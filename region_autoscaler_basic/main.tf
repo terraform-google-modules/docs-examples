@@ -1,9 +1,9 @@
 resource "google_compute_region_autoscaler" "foobar" {
   name   = "my-region-autoscaler-${local.name_suffix}"
   region = "us-central1"
-  target = "${google_compute_region_instance_group_manager.foobar.self_link}"
+  target = google_compute_region_instance_group_manager.foobar.self_link
 
-  autoscaling_policy = {
+  autoscaling_policy {
     max_replicas    = 5
     min_replicas    = 1
     cooldown_period = 60
@@ -22,14 +22,14 @@ resource "google_compute_instance_template" "foobar" {
   tags = ["foo", "bar"]
 
   disk {
-    source_image = "${data.google_compute_image.debian_9.self_link}"
+    source_image = data.google_compute_image.debian_9.self_link
   }
 
   network_interface {
     network = "default"
   }
 
-  metadata {
+  metadata = {
     foo = "bar"
   }
 
@@ -46,12 +46,16 @@ resource "google_compute_region_instance_group_manager" "foobar" {
   name   = "my-region-igm-${local.name_suffix}"
   region = "us-central1"
 
-  instance_template  = "${google_compute_instance_template.foobar.self_link}"
-  target_pools       = ["${google_compute_target_pool.foobar.self_link}"]
+  version {
+    instance_template  = google_compute_instance_template.foobar.self_link
+    name               = "primary"
+  }
+
+  target_pools       = [google_compute_target_pool.foobar.self_link]
   base_instance_name = "foobar"
 }
 
 data "google_compute_image" "debian_9" {
-	family  = "debian-9"
-	project = "debian-cloud"
+  family  = "debian-9"
+  project = "debian-cloud"
 }

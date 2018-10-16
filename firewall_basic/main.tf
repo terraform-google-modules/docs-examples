@@ -1,6 +1,6 @@
 resource "google_compute_firewall" "default" {
   name    = "test-firewall-${local.name_suffix}"
-  network = "${google_compute_network.default.name}"
+  network = google_compute_network.default.name
 
   allow {
     protocol = "icmp"
