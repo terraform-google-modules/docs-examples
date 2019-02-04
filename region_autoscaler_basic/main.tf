@@ -3,7 +3,7 @@ resource "google_compute_region_autoscaler" "foobar" {
   region = "us-central1"
   target = "${google_compute_region_instance_group_manager.foobar.self_link}"
 
-  autoscaling_policy = {
+  autoscaling_policy {
     max_replicas    = 5
     min_replicas    = 1
     cooldown_period = 60
@@ -29,7 +29,7 @@ resource "google_compute_instance_template" "foobar" {
     network = "default"
   }
 
-  metadata {
+  metadata = {
     foo = "bar"
   }
 
@@ -46,7 +46,10 @@ resource "google_compute_region_instance_group_manager" "foobar" {
   name   = "my-region-igm-${local.name_suffix}"
   region = "us-central1"
 
-  instance_template  = "${google_compute_instance_template.foobar.self_link}"
+  version {
+    instance_template  = "${google_compute_instance_template.foobar.self_link}"
+    name               = "primary"
+  }
   target_pools       = ["${google_compute_target_pool.foobar.self_link}"]
   base_instance_name = "foobar"
 }
