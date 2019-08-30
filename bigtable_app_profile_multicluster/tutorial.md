@@ -1,8 +1,8 @@
-# TPU Node Basic - Terraform
+# Bigtable App Profile Multicluster - Terraform
 
 ## Setup
 
-<walkthrough-author name="rileykarson@google.com" analyticsId="UA-125550242-1" tutorialName="tpu_node_basic" repositoryUrl="https://github.com/terraform-google-modules/docs-examples"></walkthrough-author>
+<walkthrough-author name="rileykarson@google.com" analyticsId="UA-125550242-1" tutorialName="bigtable_app_profile_multicluster" repositoryUrl="https://github.com/terraform-google-modules/docs-examples"></walkthrough-author>
 
 Welcome to Terraform in Google Cloud Shell! We need you to let us know what project you'd like to use with Terraform.
 

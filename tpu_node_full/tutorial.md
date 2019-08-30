@@ -1,4 +1,4 @@
-# Tpu Node Full - Terraform
+# TPU Node Full - Terraform
 
 ## Setup
 
