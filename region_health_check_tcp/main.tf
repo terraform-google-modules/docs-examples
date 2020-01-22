@@ -1,5 +1,4 @@
 resource "google_compute_region_health_check" "tcp-region-health-check" {
-  provider = google-beta
   name     = "tcp-region-health-check-${local.name_suffix}"
 
   timeout_sec        = 1

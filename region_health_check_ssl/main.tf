@@ -1,5 +1,4 @@
 resource "google_compute_region_health_check" "ssl-region-health-check" {
-  provider = google-beta
   name     = "ssl-region-health-check-${local.name_suffix}"
 
   timeout_sec        = 1

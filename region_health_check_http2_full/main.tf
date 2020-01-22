@@ -1,5 +1,4 @@
 resource "google_compute_region_health_check" "http2-region-health-check" {
-  provider    = google-beta
   name        = "http2-region-health-check-${local.name_suffix}"
   description = "Health check via http2"
 
