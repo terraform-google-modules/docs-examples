@@ -5,8 +5,8 @@ resource "google_sql_database" "database" {
 
 resource "google_sql_database_instance" "instance" {
   name   = "my-database-instance-${local.name_suffix}"
-  region = "us-central"
+  region = "us-central1"
   settings {
-    tier = "D0"
+    tier = "db-f1-micro"
   }
 }
