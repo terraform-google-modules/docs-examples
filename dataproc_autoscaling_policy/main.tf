@@ -1,5 +1,5 @@
 resource "google_dataproc_cluster" "basic" {
-  name     = "tf-dataproc-test--${local.name_suffix}"
+  name     = "dataproc-policy-${local.name_suffix}"
   region   = "us-central1"
 
   cluster_config {
@@ -10,7 +10,7 @@ resource "google_dataproc_cluster" "basic" {
 }
 
 resource "google_dataproc_autoscaling_policy" "asp" {
-  policy_id = "tf-dataproc-test--${local.name_suffix}"
+  policy_id = "dataproc-policy-${local.name_suffix}"
   location  = "us-central1"
 
   worker_config {
