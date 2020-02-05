@@ -1,5 +1,5 @@
 resource "google_dialogflow_agent" "full_agent" {
-  display_name = "tf-test-full-agent-${local.name_suffix}"
+  display_name = "dialogflow-agent-${local.name_suffix}"
   default_language_code = "en"
   supported_language_codes = ["fr","de","es"]
   time_zone = "America/New_York"
