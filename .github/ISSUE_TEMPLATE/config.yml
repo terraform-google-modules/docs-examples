@@ -3,4 +3,4 @@ contact_links:
   - name: Terraform Provider Google Issue Tracking
     url: https://github.com/terraform-providers/terraform-provider-google/issues/new/choose
     about: |
-      Please submit issues or here.
+      Please submit issues here.
