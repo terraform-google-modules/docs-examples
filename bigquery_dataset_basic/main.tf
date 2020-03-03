@@ -10,11 +10,16 @@ resource "google_bigquery_dataset" "dataset" {
   }
 
   access {
-    role          = "WRITER"
-    user_by_email = "myuser@hashicorp.com"
+    role          = "OWNER"
+    user_by_email = google_service_account.bqowner.email
   }
+
   access {
     role   = "READER"
     domain = "hashicorp.com"
   }
+}
+
+resource "google_service_account" "bqowner" {
+  account_id = "bqowner-${local.name_suffix}"
 }
