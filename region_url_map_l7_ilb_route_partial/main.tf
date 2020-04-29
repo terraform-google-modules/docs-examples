@@ -1,5 +1,4 @@
 resource "google_compute_region_url_map" "regionurlmap" {
-  provider = "google-beta"
   name        = "regionurlmap-${local.name_suffix}"
   description = "a description"
   default_service = google_compute_region_backend_service.home.self_link
@@ -42,7 +41,6 @@ resource "google_compute_region_url_map" "regionurlmap" {
 }
 
 resource "google_compute_region_backend_service" "home" {
-  provider = "google-beta"
   name        = "home-${local.name_suffix}"
   protocol    = "HTTP"
   timeout_sec = 10
@@ -52,7 +50,6 @@ resource "google_compute_region_backend_service" "home" {
 }
 
 resource "google_compute_region_health_check" "default" {
-  provider = "google-beta"
   name               = "health-check-${local.name_suffix}"
   http_health_check {
     port = 80
