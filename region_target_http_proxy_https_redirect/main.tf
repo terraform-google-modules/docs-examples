@@ -9,5 +9,6 @@ resource "google_compute_region_url_map" "default" {
   name            = "url-map-${local.name_suffix}"
   default_url_redirect {
     https_redirect = true
+    strip_query    = false
   }
 }
