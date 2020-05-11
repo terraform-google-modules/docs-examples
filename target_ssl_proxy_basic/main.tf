@@ -1,7 +1,7 @@
 resource "google_compute_target_ssl_proxy" "default" {
   name             = "test-proxy-${local.name_suffix}"
-  backend_service  = google_compute_backend_service.default.self_link
-  ssl_certificates = [google_compute_ssl_certificate.default.self_link]
+  backend_service  = google_compute_backend_service.default.id
+  ssl_certificates = [google_compute_ssl_certificate.default.id]
 }
 
 resource "google_compute_ssl_certificate" "default" {
@@ -13,7 +13,7 @@ resource "google_compute_ssl_certificate" "default" {
 resource "google_compute_backend_service" "default" {
   name          = "backend-service-${local.name_suffix}"
   protocol      = "SSL"
-  health_checks = [google_compute_health_check.default.self_link]
+  health_checks = [google_compute_health_check.default.id]
 }
 
 resource "google_compute_health_check" "default" {
