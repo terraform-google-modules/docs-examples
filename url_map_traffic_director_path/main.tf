@@ -1,7 +1,7 @@
 resource "google_compute_url_map" "urlmap" {
   name        = "urlmap-${local.name_suffix}"
   description = "a description"
-  default_service = google_compute_backend_service.home.self_link
+  default_service = google_compute_backend_service.home.id
 
   host_rule {
     hosts        = ["mysite.com"]
@@ -10,7 +10,7 @@ resource "google_compute_url_map" "urlmap" {
 
   path_matcher {
     name = "allpaths"
-    default_service = google_compute_backend_service.home.self_link
+    default_service = google_compute_backend_service.home.id
 
     path_rule {
       paths   = ["/home"]
@@ -39,7 +39,7 @@ resource "google_compute_url_map" "urlmap" {
           }
         }
         request_mirror_policy {
-          backend_service = google_compute_backend_service.home.self_link
+          backend_service = google_compute_backend_service.home.id
         }
         retry_policy {
           num_retries = 4
@@ -57,7 +57,7 @@ resource "google_compute_url_map" "urlmap" {
           path_prefix_rewrite = "A replacement path"
         }
         weighted_backend_services {
-          backend_service = google_compute_backend_service.home.self_link
+          backend_service = google_compute_backend_service.home.id
           weight = 400
           header_action {
             request_headers_to_remove = ["RemoveMe"]
@@ -79,7 +79,7 @@ resource "google_compute_url_map" "urlmap" {
   }
 
   test {
-    service = google_compute_backend_service.home.self_link
+    service = google_compute_backend_service.home.id
     host    = "hi.com"
     path    = "/home"
   }
@@ -91,7 +91,7 @@ resource "google_compute_backend_service" "home" {
   protocol    = "HTTP"
   timeout_sec = 10
 
-  health_checks = [google_compute_health_check.default.self_link]
+  health_checks = [google_compute_health_check.default.id]
   load_balancing_scheme = "INTERNAL_SELF_MANAGED"
 }
 

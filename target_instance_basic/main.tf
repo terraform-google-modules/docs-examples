@@ -1,6 +1,6 @@
 resource "google_compute_target_instance" "default" {
   name     = "target-${local.name_suffix}"
-  instance = google_compute_instance.target-vm.self_link
+  instance = google_compute_instance.target-vm.id
 }
 
 data "google_compute_image" "vmimage" {
