@@ -6,6 +6,8 @@ resource "google_bigtable_instance" "instance" {
     num_nodes    = 3
     storage_type = "HDD"
   }
+
+  deletion_protection  = "false"
 }
 
 resource "google_bigtable_app_profile" "ap" {
