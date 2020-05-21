@@ -1,6 +1,4 @@
 resource "google_dns_managed_zone" "peering-zone" {
-  provider = google-beta
-
   name        = "peering-zone-${local.name_suffix}"
   dns_name    = "peering.example.com."
   description = "Example private DNS peering zone"
@@ -21,20 +19,11 @@ resource "google_dns_managed_zone" "peering-zone" {
 }
 
 resource "google_compute_network" "network-source" {
-  provider = google-beta
-
   name                    = "network-source-${local.name_suffix}"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_network" "network-target" {
-  provider = google-beta
-
   name                    = "network-target-${local.name_suffix}"
   auto_create_subnetworks = false
-}
-
-provider "google-beta" {
-  region = "us-central1"
-  zone   = "us-central1-a"
 }
