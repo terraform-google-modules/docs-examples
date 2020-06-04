@@ -7,13 +7,13 @@ resource "google_dns_managed_zone" "peering-zone" {
 
   private_visibility_config {
     networks {
-      network_url = google_compute_network.network-source.self_link
+      network_url = google_compute_network.network-source.id
     }
   }
 
   peering_config {
     target_network {
-      network_url = google_compute_network.network-target.self_link
+      network_url = google_compute_network.network-target.id
     }
   }
 }
