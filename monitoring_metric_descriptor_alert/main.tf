@@ -1,14 +1,14 @@
 resource "google_monitoring_metric_descriptor" "with_alert" {
   description = "Daily sales records from all branch stores."
-  display_name = "Daily sales"
-  type = "custom.googleapis.com/stores/daily_sales"
+  display_name = "metric-descriptor-${local.name_suffix}"
+  type = "custom.googleapis.com/stores/daily_sales-${local.name_suffix}"
   metric_kind = "GAUGE"
   value_type = "DOUBLE"
   unit = "{USD}"
 }
 
 resource "google_monitoring_alert_policy" "alert_policy" {
-  display_name = "Alert on daily sales"
+  display_name = "metric-descriptor-${local.name_suffix}"
   combiner     = "OR"
   conditions {
     display_name = "test condition"
