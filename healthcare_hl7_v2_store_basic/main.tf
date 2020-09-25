@@ -1,4 +1,4 @@
-resource "google_healthcare_hl7_v2_store" "default" {
+resource "google_healthcare_hl7_v2_store" "store" {
   name    = "example-hl7-v2-store-${local.name_suffix}"
   dataset = google_healthcare_dataset.dataset.id
 
