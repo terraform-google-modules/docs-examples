@@ -1,4 +1,5 @@
 resource "google_bigquery_table" "source-one" {
+  deletion_protection = false
   dataset_id = google_bigquery_dataset.source-one.dataset_id
   table_id   = "job_extract-${local.name_suffix}_table"
 
