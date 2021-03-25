@@ -26,10 +26,11 @@ resource "google_compute_region_url_map" "default" {
 }
 
 resource "google_compute_region_backend_service" "default" {
-  region      = "us-central1"
-  name        = "backend-service-${local.name_suffix}"
-  protocol    = "HTTP"
-  timeout_sec = 10
+  region                = "us-central1"
+  name                  = "backend-service-${local.name_suffix}"
+  protocol              = "HTTP"
+  timeout_sec           = 10
+  load_balancing_scheme = "INTERNAL_MANAGED"
 
   health_checks = [google_compute_region_health_check.default.id]
 }
