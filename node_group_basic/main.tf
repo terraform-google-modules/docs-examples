@@ -6,7 +6,7 @@ resource "google_compute_node_template" "soletenant-tmpl" {
 
 resource "google_compute_node_group" "nodes" {
   name        = "soletenant-group-${local.name_suffix}"
-  zone        = "us-central1-a"
+  zone        = "us-central1-f"
   description = "example google_compute_node_group for Terraform Google Provider"
 
   size          = 1
