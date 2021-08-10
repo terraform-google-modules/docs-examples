@@ -8,7 +8,7 @@ resource "google_privateca_certificate_authority" "default" {
     subject_config {
       subject {
         organization = "HashiCorp"
-        common_name = "my-certificate-authority"
+        common_name = "my-subordinate-authority"
       }
       subject_alt_name {
         dns_names = ["hashicorp.com"]
@@ -44,4 +44,5 @@ resource "google_privateca_certificate_authority" "default" {
   key_spec {
     algorithm = "RSA_PKCS1_4096_SHA256"
   }
+  type = "SUBORDINATE"
 }
