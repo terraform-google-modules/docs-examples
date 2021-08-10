@@ -22,9 +22,9 @@ resource "google_kms_crypto_key_iam_binding" "privateca_sa_keyuser_viewer" {
 resource "google_privateca_certificate_authority" "default" {
   // This example assumes this pool already exists.
   // Pools cannot be deleted in normal test circumstances, so we depend on static pools
-  pool = ""
+  pool = "ca-pool-${local.name_suffix}"
   certificate_authority_id = "my-certificate-authority-${local.name_suffix}"
-  location = "us-central1"
+  location = "us-central1-${local.name_suffix}"
   key_spec {
     cloud_kms_key_version = "projects/keys-project/locations/us-central1/keyRings/key-ring/cryptoKeys/crypto-key-${local.name_suffix}/cryptoKeyVersions/1"
   }
