@@ -4,7 +4,7 @@ resource "google_storage_bucket" "dest" {
 }
 
 resource "google_network_services_edge_cache_origin" "google" {
-  name                 = "google-${local.name_suffix}"
+  name                 = "origin-google-${local.name_suffix}"
   origin_address       = "google.com"
   description          = "The default bucket for media edge test"
   max_attempts         = 2
