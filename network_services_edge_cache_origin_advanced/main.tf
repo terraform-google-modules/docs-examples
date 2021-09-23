@@ -1,6 +1,6 @@
 
 resource "google_network_services_edge_cache_origin" "fallback" {
-  name                 = "fallback-${local.name_suffix}"
+  name                 = "my-fallback-${local.name_suffix}"
   origin_address       = "gs://media-edge-fallback"
   description          = "The default bucket for media edge test"
   max_attempts         = 3
@@ -20,7 +20,7 @@ resource "google_network_services_edge_cache_origin" "fallback" {
 }
 
 resource "google_network_services_edge_cache_origin" "default" {
-  name                 = "default-${local.name_suffix}"
+  name                 = "my-origin-${local.name_suffix}"
   origin_address       = "gs://media-edge-default"
   failover_origin      = google_network_services_edge_cache_origin.fallback.id
   description          = "The default bucket for media edge test"
