@@ -1,5 +1,6 @@
 resource "google_storage_bucket" "dest" {
   name          = "my-bucket-${local.name_suffix}"
+  location      = "US"
   force_destroy = true
 }
 

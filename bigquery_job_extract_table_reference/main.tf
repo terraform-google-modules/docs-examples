@@ -32,8 +32,8 @@ resource "google_bigquery_dataset" "source-one" {
 }
 
 resource "google_storage_bucket" "dest" {
-  name = "job_extract-${local.name_suffix}_bucket"
-
+  name          = "job_extract-${local.name_suffix}_bucket"
+  location      = "US"
   force_destroy = true
 }
 
