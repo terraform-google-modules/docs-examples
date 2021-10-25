@@ -1,5 +1,6 @@
 resource "google_storage_bucket" "bucket" {
-	name = "appengine-static-content-${local.name_suffix}"
+	name     = "appengine-static-content-${local.name_suffix}"
+  location = "US"
 }
 
 resource "google_storage_bucket_object" "object" {

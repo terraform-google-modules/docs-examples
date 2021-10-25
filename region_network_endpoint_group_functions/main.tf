@@ -22,11 +22,12 @@ resource "google_cloudfunctions_function" "function_neg" {
 }
 
 resource "google_storage_bucket" "bucket" {
-  name       = "cloudfunctions-function-example-bucket-${local.name_suffix}"
+  name     = "cloudfunctions-function-example-bucket-${local.name_suffix}"
+  location = "US"
 }
 
 resource "google_storage_bucket_object" "archive" { 
-  name       = "index.zip"
-  bucket     = google_storage_bucket.bucket.name
-  source     = "path/to/index.zip-${local.name_suffix}"
+  name   = "index.zip"
+  bucket = google_storage_bucket.bucket.name
+  source = "path/to/index.zip-${local.name_suffix}"
 }

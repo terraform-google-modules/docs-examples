@@ -59,11 +59,12 @@ resource "google_app_engine_flexible_app_version" "appengine_neg" {
 }
 
 resource "google_storage_bucket" "appengine_neg" {
-  name       = "appengine-neg-${local.name_suffix}"
+  name     = "appengine-neg-${local.name_suffix}"
+  location = "US"
 }
 
 resource "google_storage_bucket_object" "appengine_neg" {
-  name      = "hello-world.zip"
-  bucket    = google_storage_bucket.appengine_neg.name
-  source    = "./test-fixtures/appengine/hello-world.zip"
+  name   = "hello-world.zip"
+  bucket = google_storage_bucket.appengine_neg.name
+  source = "./test-fixtures/appengine/hello-world.zip"
 }
