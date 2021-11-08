@@ -1,6 +1,6 @@
 resource "google_compute_snapshot" "snapshot" {
   name        = "my-snapshot-${local.name_suffix}"
-  source_disk = google_compute_disk.persistent.name
+  source_disk = google_compute_disk.persistent.id
   zone        = "us-central1-a"
   labels = {
     my_label = "value"
