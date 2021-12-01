@@ -1,6 +1,6 @@
 resource "google_filestore_instance" "instance" {
   name = "test-instance-${local.name_suffix}"
-  zone = "us-central1-b"
+  location = "us-central1-b"
   tier = "PREMIUM"
 
   file_shares {
