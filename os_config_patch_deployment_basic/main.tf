@@ -1,5 +1,5 @@
 resource "google_os_config_patch_deployment" "patch" {
-  patch_deployment_id = "patch-deploy-inst-${local.name_suffix}"
+  patch_deployment_id = "patch-deploy-${local.name_suffix}"
 
   instance_filter {
     all = true
