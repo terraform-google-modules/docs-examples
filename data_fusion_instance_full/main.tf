@@ -1,5 +1,4 @@
 resource "google_data_fusion_instance" "extended_instance" {
-  provider = "google-beta"
   name = "my-instance-${local.name_suffix}"
   description = "My Data Fusion instance"
   region = "us-central1"
@@ -14,4 +13,9 @@ resource "google_data_fusion_instance" "extended_instance" {
     network = "default"
     ip_allocation = "10.89.48.0/22"
   }
+  version = "6.3.0"
+  dataproc_service_account = data.google_app_engine_default_service_account.default.email
+}
+
+data "google_app_engine_default_service_account" "default" {
 }
