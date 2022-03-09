@@ -2,7 +2,7 @@ resource "google_compute_backend_service" "default" {
   provider = google-beta
 
   name                  = "backend-service-${local.name_suffix}"
-  health_checks         = [google_compute_health_check.health_check.self_link]
+  health_checks         = [google_compute_health_check.health_check.id]
   load_balancing_scheme = "INTERNAL_SELF_MANAGED"
   locality_lb_policy    = "ROUND_ROBIN"
 }
