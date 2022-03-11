@@ -28,6 +28,7 @@ resource "google_network_services_edge_cache_service" "instance" {
   name                 = "my-service-${local.name_suffix}"
   description          = "some description"
   disable_quic         = true
+  disable_http2        = true
   labels = {
     a = "b"
   }
