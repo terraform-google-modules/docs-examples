@@ -1,5 +1,4 @@
 resource "google_redis_instance" "cache" {
-  provider = google-beta
   name           = "mrr-memory-cache-${local.name_suffix}"
   tier           = "STANDARD_HA"
   memory_size_gb = 5
@@ -30,6 +29,5 @@ resource "google_redis_instance" "cache" {
 // config, add an additional network resource or change
 // this from "data"to "resource"
 data "google_compute_network" "redis-network" {
-  provider = google-beta
   name = "redis-test-network-${local.name_suffix}"
 }
