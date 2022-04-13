@@ -1,5 +1,4 @@
 resource "google_filestore_instance" "instance" {
-  provider = google-beta
   name = "test-instance-${local.name_suffix}"
   location = "us-central1-b"
   tier = "BASIC_SSD"
