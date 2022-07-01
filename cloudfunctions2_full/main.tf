@@ -1,17 +1,18 @@
+# [START functions_v2_full]
 resource "google_service_account" "account" {
   provider = google-beta
-  account_id = "test-service-account"
+  account_id = "s-a-${local.name_suffix}"
   display_name = "Test Service Account"
 }
 
 resource "google_pubsub_topic" "sub" {
   provider = google-beta
-  name = "pubsub"
+  name = "pub-sub-${local.name_suffix}"
 }
 
 resource "google_storage_bucket" "bucket" {
   provider = google-beta
-  name     = "cloudfunctions2-function-bucket-${local.name_suffix}"
+  name     = "cloudfunctions2-function-bucket-${local.name_suffix}"  # Every bucket name must be globally unique
   location = "US"
   uniform_bucket_level_access = true
 }
@@ -20,7 +21,7 @@ resource "google_storage_bucket_object" "object" {
   provider = google-beta
   name   = "function-source.zip"
   bucket = google_storage_bucket.bucket.name
-  source = "path/to/index.zip-${local.name_suffix}"
+  source = "path/to/index.zip-${local.name_suffix}"  # Add path to the zipped function source code
 }
  
 resource "google_cloudfunctions2_function" "terraform-test" {
@@ -31,7 +32,7 @@ resource "google_cloudfunctions2_function" "terraform-test" {
  
   build_config {
     runtime = "nodejs16"
-    entry_point = "helloHttp"
+    entry_point = "helloPubSub"  # Set the entry point 
     environment_variables = {
         BUILD_CONFIG_TEST = "build_test"
     }
@@ -64,3 +65,4 @@ resource "google_cloudfunctions2_function" "terraform-test" {
     service_account_email = google_service_account.account.email
   }
 }
+# [END functions_v2_full]
