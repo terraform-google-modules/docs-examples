@@ -1,6 +1,7 @@
+# [START functions_v2_basic]
 resource "google_storage_bucket" "bucket" {
   provider = google-beta
-  name     = "cloudfunctions2-function-bucket-${local.name_suffix}"
+  name     = "cloudfunctions2-function-bucket-${local.name_suffix}"  # Every bucket name must be globally unique
   location = "US"
   uniform_bucket_level_access = true
 }
@@ -9,7 +10,7 @@ resource "google_storage_bucket_object" "object" {
   provider = google-beta
   name   = "function-source.zip"
   bucket = google_storage_bucket.bucket.name
-  source = "path/to/index.zip-${local.name_suffix}"
+  source = "path/to/index.zip-${local.name_suffix}"  # Add path to the zipped function source code
 }
  
 resource "google_cloudfunctions2_function" "terraform-test2" {
@@ -20,7 +21,7 @@ resource "google_cloudfunctions2_function" "terraform-test2" {
  
   build_config {
     runtime = "nodejs16"
-    entry_point = "helloHttp"
+    entry_point = "helloHttp"  # Set the entry point 
     source {
       storage_source {
         bucket = google_storage_bucket.bucket.name
@@ -35,3 +36,4 @@ resource "google_cloudfunctions2_function" "terraform-test2" {
     timeout_seconds     = 60
   }
 }
+# [END functions_v2_basic]
