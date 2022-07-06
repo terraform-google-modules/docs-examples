@@ -1,5 +1,4 @@
 resource "google_dataproc_metastore_service" "default" {
-  provider   = google-beta
   service_id = "metastore-srv-${local.name_suffix}"
   location   = "us-central1"
   port       = 9080
