@@ -1,6 +1,6 @@
 resource "google_compute_vpn_tunnel" "tunnel1" {
   provider      = google-beta
-  name          = "tunnel1-${local.name_suffix}"
+  name          = "tunnel-1-${local.name_suffix}"
   peer_ip       = "15.0.0.120"
   shared_secret = "a secret message"
 
@@ -19,13 +19,13 @@ resource "google_compute_vpn_tunnel" "tunnel1" {
 
 resource "google_compute_vpn_gateway" "target_gateway" {
   provider = google-beta
-  name     = "vpn1-${local.name_suffix}"
+  name     = "vpn-1-${local.name_suffix}"
   network  = google_compute_network.network1.id
 }
 
 resource "google_compute_network" "network1" {
   provider = google-beta
-  name     = "network1-${local.name_suffix}"
+  name     = "network-1-${local.name_suffix}"
 }
 
 resource "google_compute_address" "vpn_static_ip" {
