@@ -1,16 +1,16 @@
 # CDN load balancer with Cloud bucket as backend
 
+
+
 # VPC
 resource "google_compute_network" "default" {
   name                    = "cdn-network-${local.name_suffix}"
-  provider                = google-beta
   auto_create_subnetworks = false
 }
 
 # backend subnet
 resource "google_compute_subnetwork" "default" {
   name          = "cdn-subnet-${local.name_suffix}"
-  provider      = google-beta
   ip_cidr_range = "10.0.1.0/24"
   region        = "us-central1"
   network       = google_compute_network.default.id
@@ -18,14 +18,12 @@ resource "google_compute_subnetwork" "default" {
 
 # reserve IP address
 resource "google_compute_global_address" "default" {
-  provider = google-beta
   name     = "cdn-static-ip-${local.name_suffix}"
 }
 
 # forwarding rule
 resource "google_compute_global_forwarding_rule" "default" {
   name                  = "cdn-forwarding-rule-${local.name_suffix}"
-  provider              = google-beta
   ip_protocol           = "TCP"
   load_balancing_scheme = "EXTERNAL"
   port_range            = "80"
@@ -36,14 +34,12 @@ resource "google_compute_global_forwarding_rule" "default" {
 # http proxy
 resource "google_compute_target_http_proxy" "default" {
   name     = "cdn-target-http-proxy-${local.name_suffix}"
-  provider = google-beta
   url_map  = google_compute_url_map.default.id
 }
 
 # url map
 resource "google_compute_url_map" "default" {
   name            = "cdn-url-map-${local.name_suffix}"
-  provider        = google-beta
   default_service = google_compute_backend_bucket.default.id
 }
 
@@ -63,7 +59,7 @@ resource "google_compute_backend_bucket" "default" {
   }
 }
 
-# cdn backend bucket
+# Cloud Storage bucket
 resource "google_storage_bucket" "default" {
   name                        = "cdn-backend-storage-bucket-${local.name_suffix}"
   location                    = "US"
@@ -85,41 +81,18 @@ resource "google_storage_bucket_iam_member" "default" {
 }
 
 resource "google_storage_bucket_object" "index_page" {
-  name       = "index.html"
-  source     = "index.html"
+  name       = "index-page-${local.name_suffix}"
   bucket     = google_storage_bucket.default.name
-  depends_on = [local_file.index_page]
-}
-
-resource "google_storage_bucket_object" "error_page" {
-  name       = "404.html"
-  source     = "404.html"
-  bucket     = google_storage_bucket.default.name
-  depends_on = [local_file.error_page]
-}
-
-# image object for testing, try to access http://<your_lb_ip_address>/test.jpg
-resource "google_storage_bucket_object" "test_image" {
-  name         = "test.jpg"
-  source       = "test.jpg"
-  content_type = "image/jpeg"
-  bucket       = google_storage_bucket.default.name
-  depends_on   = [null_resource.test_image]
-}
-
-# cdn sample index page
-resource "local_file" "index_page" {
-  filename = "index.html"
-  content  = <<-EOT
+  content = <<-EOT
     <html><body>
     <h1>Congratulations on setting up Google Cloud CDN with Storage backend!</h1>
     </body></html>
   EOT
 }
 
-# cdn default error page
-resource "local_file" "error_page" {
-  filename = "404.html"
+resource "google_storage_bucket_object" "error_page" {
+  name       = "404-page-${local.name_suffix}"
+  bucket     = google_storage_bucket.default.name
   content  = <<-EOT
     <html><body>
     <h1>404 Error: Object you are looking for is no longer available!</h1>
@@ -127,9 +100,16 @@ resource "local_file" "error_page" {
   EOT
 }
 
-# cdn sample image
-resource "null_resource" "test_image" {
-  provisioner "local-exec" {
-    command = "wget -O test.jpg  https://upload.wikimedia.org/wikipedia/commons/c/c8/Thank_you_001.jpg"
-  }
+# image object for testing, try to access http://<your_lb_ip_address>/test.jpg
+resource "google_storage_bucket_object" "test_image" {
+  name         = "test-object-${local.name_suffix}"
+# Uncomment and add valid path to an object.
+#  source       = "/path/to/an/object"
+#  content_type = "image/jpeg"
+
+# Delete after uncommenting above source and content_type attributes
+  content      = "Data as string to be uploaded"
+  content_type = "text/plain"
+
+  bucket       = google_storage_bucket.default.name
 }
