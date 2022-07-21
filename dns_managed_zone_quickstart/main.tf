@@ -1,6 +1,5 @@
 # to setup a web-server
 resource "google_compute_instance" "default" {
-  provider     = google-beta
   name         = "dns-compute-instance-${local.name_suffix}"
   machine_type = "g1-small"
   zone         = "us-central1-b"
@@ -26,7 +25,6 @@ resource "google_compute_instance" "default" {
 
 # to allow http traffic
 resource "google_compute_firewall" "default" {
-  provider = google-beta
   name     = "allow-http-traffic-${local.name_suffix}"
   network  = "default"
   allow {
@@ -38,7 +36,6 @@ resource "google_compute_firewall" "default" {
 
 # to create a DNS zone
 resource "google_dns_managed_zone" "default" {
-  provider      = google-beta
   name          = "example-zone-googlecloudexample-${local.name_suffix}"
   dns_name      = "googlecloudexample.com."
   description   = "Example DNS zone"
@@ -47,7 +44,6 @@ resource "google_dns_managed_zone" "default" {
 
 # to register web-server's ip address in DNS
 resource "google_dns_record_set" "default" {
-  provider     = google-beta
   name         = google_dns_managed_zone.default.dns_name
   managed_zone = google_dns_managed_zone.default.name
   type         = "A"

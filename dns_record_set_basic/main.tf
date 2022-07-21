@@ -1,12 +1,10 @@
 resource "google_dns_managed_zone" "parent-zone" {
-  provider    = "google-beta"
   name        = "sample-zone-${local.name_suffix}"
   dns_name    = "sample-zone-${local.name_suffix}.hashicorptest.com."
   description = "Test Description"
 }
 
 resource "google_dns_record_set" "default" {
-  provider     = "google-beta"
   managed_zone = google_dns_managed_zone.parent-zone.name
   name         = "test-record.sample-zone-${local.name_suffix}.hashicorptest.com."
   type         = "A"
