@@ -1,10 +1,12 @@
 # Example of setting up a Cloud Run service with a static outbound IP
 
 resource "google_compute_network" "default" {
+  provider = google-beta
   name = "cr-static-ip-network-${local.name_suffix}"
 }
 
 resource "google_compute_subnetwork" "default" {
+  provider = google-beta
   name          = "cr-static-ip-${local.name_suffix}"
   ip_cidr_range = "10.124.0.0/28"
   network       = google_compute_network.default.id
@@ -12,6 +14,7 @@ resource "google_compute_subnetwork" "default" {
 }
 
 resource "google_project_service" "vpc" {
+  provider = google-beta
   service = "vpcaccess.googleapis.com"
 }
 
@@ -31,17 +34,20 @@ resource "google_vpc_access_connector" "default" {
 }
 
 resource "google_compute_router" "default" {
+  provider = google-beta
   name    = "cr-static-ip-router-${local.name_suffix}"
   network = google_compute_network.default.name
   region  = google_compute_subnetwork.default.region
 }
 
 resource "google_compute_address" "default" {
+  provider = google-beta
   name   = "cr-static-ip-addr-${local.name_suffix}"
   region = google_compute_subnetwork.default.region
 }
 
 resource "google_compute_router_nat" "default" {
+  provider = google-beta
   name   = "cr-static-nat-${local.name_suffix}"
   router = google_compute_router.default.name
   region = google_compute_subnetwork.default.region
@@ -57,6 +63,7 @@ resource "google_compute_router_nat" "default" {
 }
 
 resource "google_cloud_run_service" "default" {
+  provider = google-beta
   name     = "cr-static-ip-service-${local.name_suffix}"
   location = google_compute_subnetwork.default.region
 
