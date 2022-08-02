@@ -1,10 +1,10 @@
 resource "google_compute_vpn_gateway" "target_gateway" {
-  name    = "vpn1-${local.name_suffix}"
+  name    = "vpn-1-${local.name_suffix}"
   network = google_compute_network.network1.id
 }
 
 resource "google_compute_network" "network1" {
-  name = "network1-${local.name_suffix}"
+  name = "network-1-${local.name_suffix}"
 }
 
 resource "google_compute_address" "vpn_static_ip" {
