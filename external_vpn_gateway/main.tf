@@ -15,7 +15,7 @@ resource "google_compute_external_vpn_gateway" "external_gateway" {
 }
 
 resource "google_compute_network" "network" {
-  name                    = "network-${local.name_suffix}"
+  name                    = "network-1-${local.name_suffix}"
   routing_mode            = "GLOBAL"
   auto_create_subnetworks = false
 }
