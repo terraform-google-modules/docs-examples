@@ -1,4 +1,5 @@
 resource "google_cloud_run_service" "renderer" {
+  provider = google-beta
   name     = "renderer-${local.name_suffix}"
   location = "us-central1"
   template {
@@ -18,6 +19,7 @@ resource "google_cloud_run_service" "renderer" {
 }
 
 resource "google_cloud_run_service" "editor" {
+  provider = google-beta
   name     = "editor-${local.name_suffix}"
   location = "us-central1"
   template {
@@ -41,16 +43,19 @@ resource "google_cloud_run_service" "editor" {
 }
 
 resource "google_service_account" "renderer" {
+  provider     = google-beta
   account_id   = "renderer-identity"
   display_name = "Service identity of the Renderer (Backend) service."
 }
 
 resource "google_service_account" "editor" {
+  provider     = google-beta
   account_id   = "editor-identity"
   display_name = "Service identity of the Editor (Frontend) service."
 }
 
 resource "google_cloud_run_service_iam_member" "editor_invokes_renderer" {
+  provider = google-beta
   location = google_cloud_run_service.renderer.location
   service  = google_cloud_run_service.renderer.name
   role     = "roles/run.invoker"
@@ -58,6 +63,7 @@ resource "google_cloud_run_service_iam_member" "editor_invokes_renderer" {
 }
 
 data "google_iam_policy" "noauth" {
+  provider = google-beta
   binding {
     role = "roles/run.invoker"
     members = [
@@ -67,6 +73,7 @@ data "google_iam_policy" "noauth" {
 }
 
 resource "google_cloud_run_service_iam_policy" "noauth" {
+  provider = google-beta
   location = google_cloud_run_service.editor.location
   project  = google_cloud_run_service.editor.project
   service  = google_cloud_run_service.editor.name
