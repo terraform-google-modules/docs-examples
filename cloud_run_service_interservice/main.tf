@@ -1,7 +1,7 @@
 # Example of using a public Cloud Run service to call a private one
 
 resource "google_cloud_run_service" "default" {
-  name     = "private-service-${local.name_suffix}"
+  name     = "public-service-${local.name_suffix}"
   location = "us-central1"
 
   template {
@@ -50,7 +50,7 @@ resource "google_service_account" "default" {
 }
 
 resource "google_cloud_run_service" "default_private" {
-  name     = "private-service-${local.name_suffix}-private"
+  name     = "private-service-${local.name_suffix}"
   location = "us-central1"
 
   template {
