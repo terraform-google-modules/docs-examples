@@ -84,8 +84,8 @@ resource "google_cloud_run_service" "default" {
         baz : "quux"
       }
                 }
-      }
-    
+              }
+
   traffic {
     percent         = 100
     latest_revision = true
