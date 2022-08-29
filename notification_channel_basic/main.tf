@@ -4,4 +4,5 @@ resource "google_monitoring_notification_channel" "basic" {
   labels = {
     email_address = "fake_email@blahblah.com"
   }
+  force_delete = false
 }
