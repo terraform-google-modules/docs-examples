@@ -1,20 +1,29 @@
-resource "google_compute_network" "network-1" {
-  provider = google-beta
+resource "google_dns_managed_zone" "private-zone-gke" {
+  name        = "private-zone-${local.name_suffix}"
+  dns_name    = "private.example.com."
+  description = "Example private DNS zone"
+  labels = {
+    foo = "bar"
+  }
 
+  visibility = "private"
+
+  private_visibility_config {
+    networks {
+      network_url = google_compute_network.network-1.id
+    }
+    gke_clusters {
+      gke_cluster_name = google_container_cluster.cluster-1.id
+    }
+  }
+}
+
+resource "google_compute_network" "network-1" {
   name                    = "network-1-${local.name_suffix}"
   auto_create_subnetworks = false
 }
 
-resource "google_compute_network" "network-2" {
-  provider = google-beta
-  
-  name                    = "network-2-${local.name_suffix}"
-  auto_create_subnetworks = false
-}
-
 resource "google_compute_subnetwork" "subnetwork-1" {
-  provider = google-beta
-
   name                     = google_compute_network.network-1.name
   network                  = google_compute_network.network-1.name
   ip_cidr_range            = "10.0.36.0/24"
@@ -33,8 +42,6 @@ resource "google_compute_subnetwork" "subnetwork-1" {
 }
 
 resource "google_container_cluster" "cluster-1" {
-  provider = google-beta
-
   name               = "cluster-1-${local.name_suffix}"
   location           = "us-central1-c"
   initial_node_count = 1
@@ -59,21 +66,5 @@ resource "google_container_cluster" "cluster-1" {
   ip_allocation_policy {
     cluster_secondary_range_name  = google_compute_subnetwork.subnetwork-1.secondary_ip_range[0].range_name
     services_secondary_range_name = google_compute_subnetwork.subnetwork-1.secondary_ip_range[1].range_name
-  }
-}
-
-resource "google_dns_response_policy" "example-response-policy" {
-  provider = google-beta
-  
-  response_policy_name = "example-response-policy-${local.name_suffix}"
-  
-  networks {
-    network_url = google_compute_network.network-1.id
-  }
-  networks {
-    network_url = google_compute_network.network-2.id
-  }
-  gke_clusters {
-	  gke_cluster_name = google_container_cluster.cluster-1.id
   }
 }
