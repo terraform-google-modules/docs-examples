@@ -1,4 +1,4 @@
-resource "google_data_fusion_instance" "basic_cmek" {
+resource "google_data_fusion_instance" "cmek" {
   name   = "my-instance-${local.name_suffix}"
   region = "us-central1"
   type   = "BASIC"
