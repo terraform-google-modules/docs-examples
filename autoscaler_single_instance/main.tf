@@ -75,4 +75,5 @@ data "google_compute_image" "debian_9" {
 provider "google-beta" {
   region = "us-central1"
   zone   = "us-central1-a"
+  
 }
