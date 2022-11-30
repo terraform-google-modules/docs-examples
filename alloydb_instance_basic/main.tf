@@ -4,6 +4,10 @@ resource "google_alloydb_instance" "default" {
   instance_id   = "alloydb-instance-${local.name_suffix}"
   instance_type = "PRIMARY"
 
+  machine_config {
+    cpu_count = 2
+  }
+
   depends_on = [google_service_networking_connection.vpc_connection]
 }
 
