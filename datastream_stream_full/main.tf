@@ -93,6 +93,12 @@ resource "google_storage_bucket_iam_member" "reader" {
     member = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-datastream.iam.gserviceaccount.com"
 }
 
+resource "google_kms_crypto_key_iam_member" "key_user" {
+    crypto_key_id = "kms-name-${local.name_suffix}"
+    role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+    member        = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-datastream.iam.gserviceaccount.com"
+}
+
 resource "google_datastream_connection_profile" "destination_connection_profile" {
     display_name          = "Connection profile"
     location              = "us-central1"
@@ -105,6 +111,9 @@ resource "google_datastream_connection_profile" "destination_connection_profile"
 }
 
 resource "google_datastream_stream" "default" {
+    depends_on = [
+        google_kms_crypto_key_iam_member.key_user
+    ]
     stream_id = "my-stream-${local.name_suffix}"
     desired_state = "NOT_STARTED"
     location = "us-central1"
@@ -181,4 +190,6 @@ resource "google_datastream_stream" "default" {
             }
         }
     }
+
+    customer_managed_encryption_key = "kms-name-${local.name_suffix}"
 }
