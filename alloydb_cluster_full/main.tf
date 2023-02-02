@@ -1,5 +1,4 @@
 resource "google_alloydb_cluster" "full" {
-  provider     = google-beta
   cluster_id   = "alloydb-cluster-full-${local.name_suffix}"
   location     = "us-central1"
   network      = "projects/${data.google_project.project.number}/global/networks/${google_compute_network.default.name}"
@@ -39,11 +38,8 @@ resource "google_alloydb_cluster" "full" {
   }
 }
 
-data "google_project" "project" {
-  provider = google-beta
-}
+data "google_project" "project" {}
 
 resource "google_compute_network" "default" {
-  provider = google-beta
   name = "alloydb-cluster-full-${local.name_suffix}"
 }
