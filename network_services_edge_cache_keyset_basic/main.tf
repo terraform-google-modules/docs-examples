@@ -1,6 +1,6 @@
 
 resource "google_network_services_edge_cache_keyset" "default" {
-  name                 = "default-${local.name_suffix}"
+  name                 = "my-keyset-${local.name_suffix}"
   description          = "The default keyset"
   public_key {
     id = "my-public-key"
