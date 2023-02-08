@@ -1,7 +1,8 @@
 resource "google_healthcare_fhir_store" "default" {
-  name    = "example-fhir-store-${local.name_suffix}"
-  dataset = google_healthcare_dataset.dataset.id
-  version = "R4"
+  provider = google-beta
+  name     = "example-fhir-store-${local.name_suffix}"
+  dataset  = google_healthcare_dataset.dataset.id
+  version  = "R4"
 
   enable_update_create          = false
   disable_referential_integrity = false
@@ -12,16 +13,19 @@ resource "google_healthcare_fhir_store" "default" {
     label1 = "labelvalue1"
   }
 
-  notification_config {
-    pubsub_topic = "${google_pubsub_topic.topic.id}"
+  notification_configs {
+    pubsub_topic       = "${google_pubsub_topic.topic.id}"
+    send_full_resource = true
   }
 }
 
 resource "google_pubsub_topic" "topic" {
-  name = "fhir-notifications-${local.name_suffix}"
+  provider = google-beta
+  name     = "fhir-notifications-${local.name_suffix}"
 }
 
 resource "google_healthcare_dataset" "dataset" {
+  provider = google-beta
   name     = "example-dataset-${local.name_suffix}"
   location = "us-central1"
 }
