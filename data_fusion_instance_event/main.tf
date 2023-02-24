@@ -2,7 +2,6 @@ resource "google_data_fusion_instance" "event" {
   name    = "my-instance-${local.name_suffix}"
   region  = "us-central1"
   type    = "BASIC"
-  version = "6.7.0"
 
   event_publish_config {
     enabled = true
