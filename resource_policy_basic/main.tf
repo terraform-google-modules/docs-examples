@@ -1,5 +1,5 @@
 resource "google_compute_resource_policy" "foo" {
-  name   = "policy-${local.name_suffix}"
+  name   = "gce-policy-${local.name_suffix}"
   region = "us-central1"
   snapshot_schedule_policy {
     schedule {
