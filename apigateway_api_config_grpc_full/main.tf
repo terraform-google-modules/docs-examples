@@ -1,12 +1,12 @@
 resource "google_api_gateway_api" "api_cfg" {
   provider = google-beta
-  api_id = "api-cfg-${local.name_suffix}"
+  api_id = "my-api-${local.name_suffix}"
 }
 
 resource "google_api_gateway_api_config" "api_cfg" {
   provider = google-beta
   api = google_api_gateway_api.api_cfg.api_id
-  api_config_id = "cfg-${local.name_suffix}"
+  api_config_id = "my-config-${local.name_suffix}"
 
   grpc_services {
     file_descriptor_set {
