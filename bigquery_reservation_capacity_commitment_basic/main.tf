@@ -1,7 +1,8 @@
 resource "google_bigquery_capacity_commitment" "commitment" {
-	location   = "us-west1"
+	location   = "us-west2"
 	slot_count = 100
-	plan       = "FLEX"
+	plan       = "FLEX_FLAT_RATE"
+	edition    = "ENTERPRISE"
 }
 
 resource "time_sleep" "wait_61_seconds" {
