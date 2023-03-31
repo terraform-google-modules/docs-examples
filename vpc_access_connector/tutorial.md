@@ -1,4 +1,4 @@
-# VPC Access Connector - Terraform
+# Vpc Access Connector - Terraform
 
 ## Setup
 

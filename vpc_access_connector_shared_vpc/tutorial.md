@@ -1,4 +1,4 @@
-# VPC Access Connector Shared VPC - Terraform
+# Vpc Access Connector Shared Vpc - Terraform
 
 ## Setup
 
