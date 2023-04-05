@@ -1,4 +1,6 @@
 resource "google_bigquery_capacity_commitment" "commitment" {
+	capacity_commitment_id = "capacity-tf-test%{random_suffix}"
+
 	location   = "us-west2"
 	slot_count = 100
 	plan       = "FLEX_FLAT_RATE"
