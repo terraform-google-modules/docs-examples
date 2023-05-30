@@ -1,7 +1,7 @@
 resource "google_certificate_manager_dns_authorization" "default" {
   name        = "dns-auth-${local.name_suffix}"
   description = "The default dnss"
-  domain      = "%{random_suffix}.hashicorptest.com"
+  domain      = "subdomain-${local.name_suffix}.hashicorptest.com"
 }
 
 output "record_name_to_insert" {
