@@ -1,10 +1,10 @@
 resource "google_filestore_instance" "instance" {
-  name = "test-instance-${local.name_suffix}"
+  name     = "test-instance-${local.name_suffix}"
   location = "us-central1-b"
-  tier = "PREMIUM"
+  tier     = "BASIC_HDD"
 
   file_shares {
-    capacity_gb = 2660
+    capacity_gb = 1024
     name        = "share1"
   }
 
