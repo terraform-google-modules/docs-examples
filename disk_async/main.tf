@@ -1,6 +1,4 @@
 resource "google_compute_disk" "primary" {
-  provider = google-beta
-
   name  = "async-test-disk-${local.name_suffix}"
   type  = "pd-ssd"
   zone  = "us-central1-a"
@@ -9,8 +7,6 @@ resource "google_compute_disk" "primary" {
 }
 
 resource "google_compute_disk" "secondary" {
-  provider = google-beta
-
   name  = "async-secondary-test-disk-${local.name_suffix}"
   type  = "pd-ssd"
   zone  = "us-east1-c"

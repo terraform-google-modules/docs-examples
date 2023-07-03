@@ -1,6 +1,4 @@
 resource "google_compute_region_disk" "primary" {
-  provider = google-beta
-
   name                      = "primary-region-disk-${local.name_suffix}"
   type                      = "pd-ssd"
   region                    = "us-central1"
@@ -10,8 +8,6 @@ resource "google_compute_region_disk" "primary" {
 }
 
 resource "google_compute_region_disk" "secondary" {
-  provider = google-beta
-
   name                      = "secondary-region-disk-${local.name_suffix}"
   type                      = "pd-ssd"
   region                    = "us-east1"
