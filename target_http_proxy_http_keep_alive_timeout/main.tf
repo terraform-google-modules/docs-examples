@@ -1,12 +1,10 @@
 resource "google_compute_target_http_proxy" "default" {
-  provider                    = google-beta
   name                        = "test-http-keep-alive-timeout-proxy-${local.name_suffix}"
-  http_keep_alive_timeout_sec = 120
+  http_keep_alive_timeout_sec = 610
   url_map                     = google_compute_url_map.default.id
 }
 
 resource "google_compute_url_map" "default" {
-  provider        = google-beta
   name            = "url-map-${local.name_suffix}"
   default_service = google_compute_backend_service.default.id
 
@@ -27,7 +25,6 @@ resource "google_compute_url_map" "default" {
 }
 
 resource "google_compute_backend_service" "default" {
-  provider              = google-beta
   name                  = "backend-service-${local.name_suffix}"
   port_name             = "http"
   protocol              = "HTTP"
@@ -38,7 +35,6 @@ resource "google_compute_backend_service" "default" {
 }
 
 resource "google_compute_http_health_check" "default" {
-  provider           = google-beta
   name               = "http-health-check-${local.name_suffix}"
   request_path       = "/"
   check_interval_sec = 1
