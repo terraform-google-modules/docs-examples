@@ -1,5 +1,4 @@
 resource "google_network_services_gateway" "default" {
-  provider    = google-beta
   name        = "my-gateway-${local.name_suffix}"
   labels      = {
     foo = "bar"
