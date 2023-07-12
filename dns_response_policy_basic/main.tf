@@ -1,20 +1,14 @@
 resource "google_compute_network" "network-1" {
-  provider = google-beta
-
   name                    = "network-1-${local.name_suffix}"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_network" "network-2" {
-  provider = google-beta
-  
   name                    = "network-2-${local.name_suffix}"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "subnetwork-1" {
-  provider = google-beta
-
   name                     = google_compute_network.network-1.name
   network                  = google_compute_network.network-1.name
   ip_cidr_range            = "10.0.36.0/24"
@@ -33,8 +27,6 @@ resource "google_compute_subnetwork" "subnetwork-1" {
 }
 
 resource "google_container_cluster" "cluster-1" {
-  provider = google-beta
-
   name               = "cluster-1-${local.name_suffix}"
   location           = "us-central1-c"
   initial_node_count = 1
@@ -63,10 +55,8 @@ resource "google_container_cluster" "cluster-1" {
 }
 
 resource "google_dns_response_policy" "example-response-policy" {
-  provider = google-beta
-  
   response_policy_name = "example-response-policy-${local.name_suffix}"
-  
+
   networks {
     network_url = google_compute_network.network-1.id
   }
