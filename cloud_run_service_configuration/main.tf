@@ -17,14 +17,12 @@ resource "google_cloud_run_service" "default" {
         # https://cloud.google.com/run/docs/configuring/containers#configure-entrypoint
         args = []
         
-        # [START cloudrun_service_configuration_http2]
         # Enable HTTP/2
         # https://cloud.google.com/run/docs/configuring/http2
         ports {
           name           = "h2c"
           container_port = 8080
         }
-        # [END cloudrun_service_configuration_http2]
 
                 # Environment variables
         # https://cloud.google.com/run/docs/configuring/environment-variables

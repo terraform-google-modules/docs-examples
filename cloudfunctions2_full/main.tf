@@ -1,4 +1,3 @@
-# [START functions_v2_full]
 resource "google_service_account" "account" {
   provider = google-beta
   account_id = "s-a-${local.name_suffix}"
@@ -65,4 +64,3 @@ resource "google_cloudfunctions2_function" "terraform-test" {
     service_account_email = google_service_account.account.email
   }
 }
-# [END functions_v2_full]

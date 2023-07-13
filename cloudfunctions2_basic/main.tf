@@ -1,4 +1,3 @@
-# [START functions_v2_basic]
 resource "google_storage_bucket" "bucket" {
   provider = google-beta
   name     = "cloudfunctions2-function-bucket-${local.name_suffix}"  # Every bucket name must be globally unique
@@ -36,4 +35,3 @@ resource "google_cloudfunctions2_function" "terraform-test2" {
     timeout_seconds     = 60
   }
 }
-# [END functions_v2_basic]
