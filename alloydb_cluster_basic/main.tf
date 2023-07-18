@@ -1,7 +1,7 @@
 resource "google_alloydb_cluster" "default" {
   cluster_id = "alloydb-cluster-${local.name_suffix}"
   location   = "us-central1"
-  network    = "projects/${data.google_project.project.number}/global/networks/${google_compute_network.default.name}"
+  network    = google_compute_network.default.id
 }
 
 data "google_project" "project" {}
