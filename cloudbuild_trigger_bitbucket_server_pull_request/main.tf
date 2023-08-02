@@ -1,5 +1,5 @@
 resource "google_cloudbuild_trigger" "bbs-pull-request-trigger" {
-  name        = "terraform-bbs-pull-request-trigger"
+  name        = "ghe-trigger-${local.name_suffix}"
   location    = "us-central1"
 
   bitbucket_server_trigger_config {

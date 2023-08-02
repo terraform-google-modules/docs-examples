@@ -1,6 +1,6 @@
 
 resource "google_secret_manager_secret" "webhook_trigger_secret_key" {
-  secret_id = "webhook_trigger-secret-key-1"
+  secret_id = "webhook-trigger-secret-key-${local.name_suffix}"
 
   replication {
     user_managed {
@@ -36,7 +36,7 @@ resource "google_secret_manager_secret_iam_policy" "policy" {
 
 
 resource "google_cloudbuild_trigger" "webhook-config-trigger" {
-  name        = "webhook-trigger"
+  name        = "webhook-trigger-${local.name_suffix}"
   description = "acceptance test example webhook build trigger"
  
  webhook_config {
