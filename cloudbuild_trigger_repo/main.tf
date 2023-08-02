@@ -1,6 +1,6 @@
 resource "google_cloudbuildv2_connection" "my-connection" {
   location = "us-central1"
-  name = "my-connection"
+  name = "my-connection-${local.name_suffix}"
 
   github_config {
     app_installation_id = 123123-${local.name_suffix}
@@ -11,7 +11,7 @@ resource "google_cloudbuildv2_connection" "my-connection" {
 }
 
 resource "google_cloudbuildv2_repository" "my-repository" {
-  name = "my-repo"
+  name = "my-repo-${local.name_suffix}"
   parent_connection = google_cloudbuildv2_connection.my-connection.id
   remote_uri = "https://github.com/myuser/my-repo.git-${local.name_suffix}"
 }
