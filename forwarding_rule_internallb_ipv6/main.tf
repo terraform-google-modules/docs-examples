@@ -1,6 +1,6 @@
 // Forwarding rule for Internal Load Balancing
 resource "google_compute_forwarding_rule" "default" {
-  name   = "website-forwarding-rule-${local.name_suffix}"
+  name   = "ilb-ipv6-forwarding-rule-${local.name_suffix}"
   region = "us-central1"
 
   load_balancing_scheme = "INTERNAL"
@@ -8,17 +8,17 @@ resource "google_compute_forwarding_rule" "default" {
   all_ports             = true
   network               = google_compute_network.default.name
   subnetwork            = google_compute_subnetwork.default.name
-  ip_version            = "IPV4"
+  ip_version            = "IPV6"
 }
 
 resource "google_compute_region_backend_service" "backend" {
-  name          = "website-backend-${local.name_suffix}"
+  name          = "ilb-ipv6-backend-${local.name_suffix}"
   region        = "us-central1"
   health_checks = [google_compute_health_check.hc.id]
 }
 
 resource "google_compute_health_check" "hc" {
-  name               = "check-website-backend-${local.name_suffix}"
+  name               = "check-ilb-ipv6-backend-${local.name_suffix}"
   check_interval_sec = 1
   timeout_sec        = 1
 
@@ -28,13 +28,16 @@ resource "google_compute_health_check" "hc" {
 }
 
 resource "google_compute_network" "default" {
-  name                    = "website-net-${local.name_suffix}"
+  name                    = "net-ipv6-${local.name_suffix}"
   auto_create_subnetworks = false
+  enable_ula_internal_ipv6 = true
 }
 
 resource "google_compute_subnetwork" "default" {
-  name          = "website-net-${local.name_suffix}"
+  name          = "subnet-internal-ipv6-${local.name_suffix}"
   ip_cidr_range = "10.0.0.0/16"
   region        = "us-central1"
+  stack_type       = "IPV4_IPV6"
+  ipv6_access_type = "INTERNAL"
   network       = google_compute_network.default.id
 }
