@@ -1,11 +1,11 @@
 
 resource "google_pubsub_topic" "mytopic" {
-  name = "mytopic"
+  name = "my-topic-${local.name_suffix}"
 }
 
 resource "google_cloudbuild_trigger" "pubsub-config-trigger" {
   location    = "us-central1"
-  name        = "pubsub-trigger"
+  name        = "pubsub-trigger-${local.name_suffix}"
   description = "acceptance test example pubsub build trigger"
 
   pubsub_config {

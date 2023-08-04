@@ -8,6 +8,11 @@ resource "google_alloydb_cluster" "full" {
     password = "alloydb-cluster-full-${local.name_suffix}"
   }
 
+  continuous_backup_config {
+    enabled              = true
+    recovery_window_days = 14
+  }
+
   automated_backup_policy {
     location      = "us-central1"
     backup_window = "1800s"

@@ -1,6 +1,6 @@
 
 resource "google_cloudbuild_trigger" "manual-trigger" {
-  name        = "manual-build"
+  name        = "manual-trigger-${local.name_suffix}"
 
   source_to_build {
     uri       = "https://hashicorp/terraform-provider-google-beta"
