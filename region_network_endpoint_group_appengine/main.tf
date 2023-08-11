@@ -66,5 +66,5 @@ resource "google_storage_bucket" "appengine_neg" {
 resource "google_storage_bucket_object" "appengine_neg" {
   name   = "hello-world.zip"
   bucket = google_storage_bucket.appengine_neg.name
-  source = "./test-fixtures/appengine/hello-world.zip"
+  source = "./test-fixtures/hello-world.zip"
 }
