@@ -14,7 +14,7 @@ resource "google_certificate_manager_certificate" "default" {
 
 # creating certificate_issuance_config to use it in the managed certificate
 resource "google_certificate_manager_certificate_issuance_config" "issuanceconfig" {
-  name    = "issuanceconfigtestterraform"
+  name    = "issuance-config-${local.name_suffix}"
   description = "sample description for the certificate issuanceConfigs"
   certificate_authority_config {
     certificate_authority_service_config {
@@ -28,7 +28,7 @@ resource "google_certificate_manager_certificate_issuance_config" "issuanceconfi
 }
   
 resource "google_privateca_ca_pool" "pool" {
-  name     = "my-ca-pool-${local.name_suffix}"
+  name     = "ca-pool-${local.name_suffix}"
   location = "us-central1"
   tier     = "ENTERPRISE"
 }
@@ -36,7 +36,7 @@ resource "google_privateca_ca_pool" "pool" {
 resource "google_privateca_certificate_authority" "ca_authority" {
   location = "us-central1"
   pool = google_privateca_ca_pool.pool.name
-  certificate_authority_id = "my-ca-${local.name_suffix}"
+  certificate_authority_id = "ca-authority-${local.name_suffix}"
   config {
     subject_config {
       subject {
