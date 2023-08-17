@@ -1,4 +1,5 @@
 resource "google_cloudbuild_trigger" "allow-exit-codes-trigger" {
+  name = "my-trigger-${local.name_suffix}"
   location = "global"
 
   trigger_template {
