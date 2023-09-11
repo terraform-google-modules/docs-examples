@@ -14,6 +14,6 @@ resource "google_secret_manager_secret" "secret-with-annotations" {
   }
 
   replication {
-    automatic = true
+    auto {}
   }
 }
