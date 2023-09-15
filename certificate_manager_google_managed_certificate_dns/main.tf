@@ -2,6 +2,9 @@ resource "google_certificate_manager_certificate" "default" {
   name        = "dns-cert-${local.name_suffix}"
   description = "The default cert"
   scope       = "EDGE_CACHE"
+  labels = {
+    env = "test"
+  }
   managed {
     domains = [
       google_certificate_manager_dns_authorization.instance.domain,
