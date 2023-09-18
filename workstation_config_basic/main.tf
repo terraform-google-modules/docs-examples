@@ -41,6 +41,10 @@ resource "google_workstations_workstation_config" "default" {
     label-one = "value-one"
   }
 
+  labels = {
+    "label" = "key"
+  }
+
   host {
     gce_instance {
       machine_type                = "e2-standard-4"
