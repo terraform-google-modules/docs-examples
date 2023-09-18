@@ -8,6 +8,5 @@ resource "google_compute_external_vpn_gateway" "external_gateway" {
   }
   labels = {
     key = "value"
-    otherkey = ""
   }
 }

@@ -28,6 +28,10 @@ resource "google_memcache_instance" "instance" {
   name = "test-instance-${local.name_suffix}"
   authorized_network = google_service_networking_connection.private_service_connection.network
 
+  labels = {
+    env = "test"
+  }
+
   node_config {
     cpu_count      = 1
     memory_size_mb = 1024
