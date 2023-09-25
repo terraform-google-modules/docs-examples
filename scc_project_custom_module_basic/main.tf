@@ -1,5 +1,5 @@
 resource "google_scc_project_custom_module" "example" {
-	display_name = "basic_custom_module"
+	display_name = "basic_custom_module-${local.name_suffix}"
 	enablement_state = "ENABLED"
 	custom_config {
 		predicate {
