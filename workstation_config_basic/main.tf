@@ -37,6 +37,7 @@ resource "google_workstations_workstation_config" "default" {
   idle_timeout = "600s"
   running_timeout = "21600s"
 
+  replica_zones = ["us-central1-a", "us-central1-b"]
   annotations = {
     label-one = "value-one"
   }
