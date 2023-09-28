@@ -9,6 +9,9 @@ resource "google_network_management_connectivity_test" "instance-test" {
   }
 
   protocol = "TCP"
+  labels = {
+    env = "test"
+  }
 }
 
 resource "google_compute_instance" "source" {

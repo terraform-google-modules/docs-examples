@@ -12,6 +12,7 @@ resource "google_container_cluster" "primary" {
       enabled = true
     }
   }
+  deletion_protection  = "false"
 }
 
 resource "google_gke_backup_backup_plan" "autopilot" {
