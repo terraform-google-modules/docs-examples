@@ -37,7 +37,7 @@ resource "google_compute_firewall" "default" {
 # to create a DNS zone
 resource "google_dns_managed_zone" "default" {
   name          = "example-zone-googlecloudexample-${local.name_suffix}"
-  dns_name      = "googlecloudexample.net."
+  dns_name      = "googlecloudexample.net.-${local.name_suffix}"
   description   = "Example DNS zone"
   force_destroy = "true"
 }
