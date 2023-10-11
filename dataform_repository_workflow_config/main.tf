@@ -65,7 +65,7 @@ resource "google_dataform_repository_release_config" "release_config" {
 
 resource "google_service_account" "dataform_sa" {
   provider     = google-beta
-  account_id   = "dataform-workflow-sa"
+  account_id   = "dataform-sa-${local.name_suffix}"
   display_name = "Dataform Service Account"
 }
 
