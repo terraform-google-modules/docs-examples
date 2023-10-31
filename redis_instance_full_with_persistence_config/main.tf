@@ -9,4 +9,8 @@ resource "google_redis_instance" "cache-persis" {
     persistence_mode = "RDB"
     rdb_snapshot_period = "TWELVE_HOURS"
   }
+
+  lifecycle {
+    prevent_destroy = false
+  }
 }

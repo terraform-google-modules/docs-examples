@@ -11,6 +11,10 @@ resource "google_redis_cluster" "cluster-ha" {
   depends_on = [
     google_network_connectivity_service_connection_policy.default
   ]
+
+  lifecycle {
+    prevent_destroy = false
+  }
 }
 
 resource "google_network_connectivity_service_connection_policy" "default" {

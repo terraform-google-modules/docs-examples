@@ -18,6 +18,10 @@ resource "google_redis_instance" "cache" {
     my_key    = "my_val"
     other_key = "other_val"
   }
+
+  lifecycle {
+    prevent_destroy = false
+  }
 }
 
 // This example assumes this network already exists.
