@@ -28,6 +28,10 @@ resource "google_redis_instance" "cache" {
       }
     }
   }
+
+  lifecycle {
+    prevent_destroy = false
+  }
 }
 
 // This example assumes this network already exists.
