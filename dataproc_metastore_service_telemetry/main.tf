@@ -1,5 +1,5 @@
 resource "google_dataproc_metastore_service" "telemetry" {
-  service_id = "telemetry-${local.name_suffix}"
+  service_id = "ms-telemetry-${local.name_suffix}"
   location   = "us-central1"
   port       = 9080
   tier       = "DEVELOPER"

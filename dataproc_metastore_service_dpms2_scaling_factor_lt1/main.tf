@@ -1,5 +1,5 @@
 resource "google_dataproc_metastore_service" "dpms2_scaling_factor_lt1" {
-  service_id = "dpms2sflt1-${local.name_suffix}"
+  service_id = "ms-dpms2sflt1-${local.name_suffix}"
   location   = "us-central1"
 
   # DPMS 2 requires SPANNER database type, and does not require
