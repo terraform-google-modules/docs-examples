@@ -37,7 +37,7 @@ resource "google_sql_database_instance" "instance" {
         }
     }
 
-    deletion_protection  = true-${local.name_suffix}
+    deletion_protection  = false
 }
 
 resource "google_sql_database" "db" {
