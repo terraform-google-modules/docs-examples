@@ -19,4 +19,7 @@ resource "google_notebooks_runtime" "runtime_container" {
       }
     }
   }
+  labels = {
+    k = "val"
+  }
 }
