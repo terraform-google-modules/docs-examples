@@ -9,10 +9,4 @@ resource "google_cloud_run_v2_job" "default" {
       }
     }
   }
-
-  lifecycle {
-    ignore_changes = [
-      launch_stage,
-    ]
-  }
 }
