@@ -10,7 +10,7 @@ resource "google_pubsub_topic" "example" {
 
 resource "google_pubsub_subscription" "example" {
   name  = "example-subscription-${local.name_suffix}"
-  topic = google_pubsub_topic.example.name
+  topic = google_pubsub_topic.example.id
 
   cloud_storage_config {
     bucket = google_storage_bucket.example.name
