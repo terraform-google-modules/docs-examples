@@ -13,6 +13,8 @@ resource "google_container_cluster" "primary" {
     }
   }
   deletion_protection  = "false"
+  network       = "default-${local.name_suffix}"
+  subnetwork    = "default-${local.name_suffix}"
 }
 
 resource "google_gke_backup_backup_plan" "autopilot" {
