@@ -2,6 +2,7 @@ resource "google_alloydb_cluster" "full" {
   cluster_id   = "alloydb-cluster-full-${local.name_suffix}"
   location     = "us-central1"
   network      = google_compute_network.default.id
+  database_version = "POSTGRES_15"
 
   initial_user {
     user     = "alloydb-cluster-full-${local.name_suffix}"
