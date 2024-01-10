@@ -1,0 +1,25 @@
+resource "google_cloudbuildv2_repository" "primary" {
+  name              = "repository-${local.name_suffix}"
+  parent_connection = google_cloudbuildv2_connection.ghe_complete.name
+  remote_uri        = "https://ghe.proctor-staging-test.com/proctorteam/regional_test.git"
+  location          = "us-central1"
+  annotations = {
+    some-key = "some-value"
+  }
+}
+
+resource "google_cloudbuildv2_connection" "ghe_complete" {
+  location = "us-central1"
+  name     = "connection-${local.name_suffix}"
+
+  github_enterprise_config {
+    host_uri                      = "https://ghe.proctor-staging-test.com"
+    app_id                        = 516
+    app_installation_id           = 243
+    app_slug                      = "myapp"
+    private_key_secret_version    = "projects/gcb-terraform-creds/secrets/ghe-private-key/versions/latest"
+    webhook_secret_secret_version = "projects/gcb-terraform-creds/secrets/ghe-webhook-secret/versions/latest"
+  }
+
+  annotations = {}
+}
