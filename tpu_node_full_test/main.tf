@@ -1,6 +1,3 @@
-data "google_tpu_tensorflow_versions" "available" {
-}
-
 
 resource "google_tpu_node" "tpu" {
   name = "test-tpu-${local.name_suffix}"
@@ -8,7 +5,7 @@ resource "google_tpu_node" "tpu" {
 
   accelerator_type = "v3-8"
 
-  tensorflow_version = data.google_tpu_tensorflow_versions.available.versions[0]
+  tensorflow_version = "2.10.0"
 
   description = "Terraform Google Provider test TPU"
   use_service_networking = true
