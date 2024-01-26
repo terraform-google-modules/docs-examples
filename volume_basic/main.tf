@@ -13,6 +13,7 @@ resource "google_netapp_volume" "test_volume" {
   share_name = "test-volume-${local.name_suffix}"
   storage_pool = google_netapp_storage_pool.default.name
   protocols = ["NFSV3"]
+  deletion_policy = "DEFAULT"
 }
 
 data "google_compute_network" "default" {
