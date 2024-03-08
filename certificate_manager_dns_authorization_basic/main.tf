@@ -1,6 +1,7 @@
 resource "google_certificate_manager_dns_authorization" "default" {
   name        = "dns-auth-${local.name_suffix}"
-  description = "The default dnss"
+  location    = "global"
+  description = "The default dns"
   domain      = "subdomain-${local.name_suffix}.hashicorptest.com"
 }
 
