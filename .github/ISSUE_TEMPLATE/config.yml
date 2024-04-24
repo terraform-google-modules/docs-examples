@@ -1,6 +1,6 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Terraform Provider Google Issue Tracking
+  - name: Terraform Provider for Google Cloud Issues
     url: https://github.com/terraform-providers/terraform-provider-google/issues/new/choose
     about: |
-      Please submit issues here.
+      Please submit issues against the provider repository instead of here.
