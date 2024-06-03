@@ -1,5 +1,4 @@
 resource "google_healthcare_fhir_store" "default" {
-  provider = google-beta
   name     = "example-fhir-store-${local.name_suffix}"
   dataset  = google_healthcare_dataset.dataset.id
   version  = "R4"
@@ -21,12 +20,10 @@ resource "google_healthcare_fhir_store" "default" {
 }
 
 resource "google_pubsub_topic" "topic" {
-  provider = google-beta
   name     = "fhir-notifications-${local.name_suffix}"
 }
 
 resource "google_healthcare_dataset" "dataset" {
-  provider = google-beta
   name     = "example-dataset-${local.name_suffix}"
   location = "us-central1"
 }
