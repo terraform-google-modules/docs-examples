@@ -1,19 +1,13 @@
-resource "google_redis_cluster" "cluster-ha" {
-  name           = "ha-cluster-${local.name_suffix}"
+resource "google_redis_cluster" "cluster-ha-single-zone" {
+  name           = "ha-cluster-single-zone-${local.name_suffix}"
   shard_count    = 3
   psc_configs {
     network = google_compute_network.producer_net.id
   }
   region = "us-central1"
-  replica_count = 1
-  node_type = "REDIS_SHARED_CORE_NANO"
-  transit_encryption_mode = "TRANSIT_ENCRYPTION_MODE_DISABLED"
-  authorization_mode = "AUTH_MODE_DISABLED"
-  redis_configs = {
-    maxmemory-policy	= "volatile-ttl"
-  }
   zone_distribution_config {
-    mode = "MULTI_ZONE"
+    mode = "SINGLE_ZONE"
+    zone = "us-central1-f"
   }
   depends_on = [
     google_network_connectivity_service_connection_policy.default
