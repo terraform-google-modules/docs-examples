@@ -43,6 +43,8 @@ resource "google_looker_instance" "looker-instance" {
     client_id = "my-client-id-${local.name_suffix}"
     client_secret = "my-client-secret-${local.name_suffix}"
   }
+
+  depends_on = [google_kms_crypto_key_iam_member.crypto_key]
 }
 
 data "google_compute_global_address" "looker_range" {
