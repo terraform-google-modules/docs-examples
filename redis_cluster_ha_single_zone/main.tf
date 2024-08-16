@@ -9,13 +9,11 @@ resource "google_redis_cluster" "cluster-ha-single-zone" {
     mode = "SINGLE_ZONE"
     zone = "us-central1-f"
   }
+  deletion_protection_enabled = false
   depends_on = [
     google_network_connectivity_service_connection_policy.default
   ]
 
-  lifecycle {
-    prevent_destroy = false
-  }
 }
 
 resource "google_network_connectivity_service_connection_policy" "default" {
