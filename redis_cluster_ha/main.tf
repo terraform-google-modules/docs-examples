@@ -12,16 +12,14 @@ resource "google_redis_cluster" "cluster-ha" {
   redis_configs = {
     maxmemory-policy	= "volatile-ttl"
   }
+  deletion_protection_enabled = false
+
   zone_distribution_config {
     mode = "MULTI_ZONE"
   }
   depends_on = [
     google_network_connectivity_service_connection_policy.default
   ]
-
-  lifecycle {
-    prevent_destroy = false
-  }
 }
 
 resource "google_network_connectivity_service_connection_policy" "default" {
