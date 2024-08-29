@@ -1,9 +1,7 @@
 data "google_project" "project" {
-  provider = google-beta
 }
 
 resource "google_network_security_server_tls_policy" "default" {
-  provider = google-beta
   name     = "my-server-tls-policy-${local.name_suffix}"
 
   description = "my description"
@@ -21,7 +19,6 @@ resource "google_network_security_server_tls_policy" "default" {
 }
 
 resource "google_certificate_manager_trust_config" "default" {
-  provider    = google-beta
   name        = "my-trust-config-${local.name_suffix}"
   description = "sample trust config description"
   location    = "global"
