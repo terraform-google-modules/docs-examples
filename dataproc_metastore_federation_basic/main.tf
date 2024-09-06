@@ -1,7 +1,6 @@
 resource "google_dataproc_metastore_federation" "default" {
-  provider      = google-beta
   location      = "us-central1"
-  federation_id = "fed-1-${local.name_suffix}"
+  federation_id = "metastore-fed-${local.name_suffix}"
   version       = "3.1.2"
 
   backend_metastores {
@@ -12,8 +11,7 @@ resource "google_dataproc_metastore_federation" "default" {
 }
 
 resource "google_dataproc_metastore_service" "default" {
-  provider   = google-beta
-  service_id = "fed-1-${local.name_suffix}"
+  service_id = "metastore-service-${local.name_suffix}"
   location   = "us-central1"
   tier       = "DEVELOPER"
 
