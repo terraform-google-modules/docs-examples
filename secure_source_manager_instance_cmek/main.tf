@@ -23,6 +23,11 @@ resource "google_secure_source_manager_instance" "default" {
     depends_on = [
       google_kms_crypto_key_iam_member.crypto_key_binding
     ]
+
+    # Prevent accidental deletions.
+    lifecycle {
+      prevent_destroy = "false"
+    }
 }
 
 data "google_project" "project" {}

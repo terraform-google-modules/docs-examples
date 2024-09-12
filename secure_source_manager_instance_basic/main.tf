@@ -4,4 +4,9 @@ resource "google_secure_source_manager_instance" "default" {
     labels = {
       "foo" = "bar"
     }
+
+    # Prevent accidental deletions.
+    lifecycle {
+      prevent_destroy = "false"
+    }
 }
