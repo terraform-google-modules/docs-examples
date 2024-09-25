@@ -1,4 +1,3 @@
-
 resource "google_tpu_node" "tpu" {
   name = "test-tpu-${local.name_suffix}"
   zone = "us-central1-b"
