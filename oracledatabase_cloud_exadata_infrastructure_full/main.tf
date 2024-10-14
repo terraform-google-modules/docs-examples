@@ -1,6 +1,6 @@
 resource "google_oracle_database_cloud_exadata_infrastructure" "my-cloud-exadata"{
-  display_name = "OFake exadata displayname"
-  cloud_exadata_infrastructure_id = "ofake-exadata-id"
+  cloud_exadata_infrastructure_id = "my-instance-${local.name_suffix}"
+  display_name = "my-instance-${local.name_suffix} displayname"
   location = "us-east4"
   project = "my-project-${local.name_suffix}"
   gcp_oracle_zone = "us-east4-b-r1"
