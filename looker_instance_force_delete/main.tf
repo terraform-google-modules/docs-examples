@@ -6,5 +6,5 @@ resource "google_looker_instance" "looker-instance" {
     client_id = "my-client-id-${local.name_suffix}"
     client_secret = "my-client-secret-${local.name_suffix}"
   }
-  deletion_policy = "DEFAULT"
+  deletion_policy = "FORCE"
 }
