@@ -2,7 +2,7 @@ resource "google_container_cluster" "primary" {
   name               = "basic-cluster-${local.name_suffix}"
   location           = "us-central1-a"
   initial_node_count = 1
-  deletion_protection  = "false"
+  deletion_protection  = false
   network       = "default-${local.name_suffix}"
   subnetwork    = "default-${local.name_suffix}"
 }
