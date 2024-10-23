@@ -12,7 +12,7 @@ resource "google_container_cluster" "primary" {
       enabled = true
     }
   }
-  deletion_protection  = "false"
+  deletion_protection  = false
   network       = "default-${local.name_suffix}"
   subnetwork    = "default-${local.name_suffix}"
 }
