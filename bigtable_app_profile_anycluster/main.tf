@@ -19,7 +19,7 @@ resource "google_bigtable_instance" "instance" {
     storage_type = "HDD"
   }
 
-  deletion_protection  = "false"
+  deletion_protection  = false
 }
 
 resource "google_bigtable_app_profile" "ap" {

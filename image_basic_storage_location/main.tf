@@ -1,8 +1,19 @@
+data "google_compute_image" "debian" {
+  family  = "debian-12"
+  project = "debian-cloud"
+}
+
+resource "google_compute_disk" "persistent" {
+  name  = "example-disk-${local.name_suffix}"
+  image = data.google_compute_image.debian.self_link
+  size  = 10
+  type  = "pd-ssd"
+  zone  = "us-central1-a"
+}
+
 resource "google_compute_image" "example" {
   name = "example-sl-image-${local.name_suffix}"
 
-  raw_disk {
-    source = "https://storage.googleapis.com/bosh-gce-raw-stemcells/bosh-stemcell-97.98-google-kvm-ubuntu-xenial-go_agent-raw-1557960142.tar.gz"
-  }
+  source_disk = google_compute_disk.persistent.id
   storage_locations = ["us-central1"]
 }
