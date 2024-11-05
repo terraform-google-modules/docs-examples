@@ -1,3 +1,6 @@
+data "google_project" "project" {
+}
+
 resource "google_healthcare_pipeline_job" "example-pipeline" {
   name  = "example_pipeline_job-${local.name_suffix}"
   location = "us-central1"
@@ -39,4 +42,10 @@ resource "google_storage_bucket_object" "merge_file" {
   name    = "merge.wstl"
   content = " "
   bucket  = google_storage_bucket.bucket.name
+}
+
+resource "google_storage_bucket_iam_member" "hsa" {
+    bucket = google_storage_bucket.bucket.name
+    role   = "roles/storage.objectUser"
+    member = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-healthcare.iam.gserviceaccount.com"
 }

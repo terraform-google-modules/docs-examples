@@ -1,3 +1,6 @@
+data "google_project" "project" {
+}
+
 resource "google_healthcare_pipeline_job" "example-mapping-pipeline" {
   name  = "example_mapping_pipeline_job-${local.name_suffix}"
   location = "us-central1"
@@ -53,4 +56,10 @@ resource "google_storage_bucket_object" "mapping_file" {
   name    = "mapping.wstl"
   content = " "
   bucket  = google_storage_bucket.bucket.name
+}
+
+resource "google_storage_bucket_iam_member" "hsa" {
+    bucket = google_storage_bucket.bucket.name
+    role   = "roles/storage.objectUser"
+    member = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-healthcare.iam.gserviceaccount.com"
 }
