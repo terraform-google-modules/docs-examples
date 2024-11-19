@@ -35,6 +35,8 @@ resource "google_oracle_database_cloud_vm_cluster" "my_vmcluster"{
     }
     memory_size_gb = 60
   }
+
+  deletion_protection = "true-${local.name_suffix}"
 }
 
 resource "google_oracle_database_cloud_exadata_infrastructure" "cloudExadataInfrastructures"{
