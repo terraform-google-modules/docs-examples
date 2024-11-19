@@ -14,6 +14,8 @@ resource "google_oracle_database_cloud_vm_cluster" "my_vmcluster"{
     gi_version = "19.0.0.0"
     hostname_prefix = "hostname1"
   }
+
+  deletion_protection = "true-${local.name_suffix}"
 }
 
 resource "google_oracle_database_cloud_exadata_infrastructure" "cloudExadataInfrastructures"{
