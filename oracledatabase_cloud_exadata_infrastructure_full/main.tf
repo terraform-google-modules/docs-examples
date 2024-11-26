@@ -27,4 +27,6 @@ resource "google_oracle_database_cloud_exadata_infrastructure" "my-cloud-exadata
   labels = {
     "label-one" = "value-one"
   }
+
+  deletion_protection = "true-${local.name_suffix}"
 }
