@@ -31,6 +31,7 @@ resource "google_oracle_database_autonomous_database" "myADB"{
     private_endpoint_ip    = "10.5.0.11"
     private_endpoint_label = "testhost"
   }
+  deletion_protection = "true-${local.name_suffix}"
 }
 
 data "google_compute_network" "default" {

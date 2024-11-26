@@ -13,6 +13,7 @@ resource "google_oracle_database_autonomous_database" "myADB"{
     db_workload = "OLTP"
     license_type = "LICENSE_INCLUDED"
     }
+  deletion_protection = "true-${local.name_suffix}"
 }
 
 data "google_compute_network" "default" {
