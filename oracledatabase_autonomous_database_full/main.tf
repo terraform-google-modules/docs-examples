@@ -3,7 +3,7 @@ resource "google_oracle_database_autonomous_database" "myADB"{
   location = "us-east4"
   project = "my-project-${local.name_suffix}"
   display_name = "autonomousDatabase displayname"
-  database = "testdatabase"
+  database = "mydatabase-${local.name_suffix}"
   admin_password = "123Abpassword"
   network = data.google_compute_network.default.id
   cidr = "10.5.0.0/24"
