@@ -29,7 +29,7 @@ resource "google_oracle_database_autonomous_database" "myADB"{
       email = "xyz@example.com"
     }
     private_endpoint_ip    = "10.5.0.11"
-    private_endpoint_label = "testhost"
+    private_endpoint_label = "myendpoint-${local.name_suffix}"
   }
   deletion_protection = "true-${local.name_suffix}"
 }
