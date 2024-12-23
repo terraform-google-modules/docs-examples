@@ -8,7 +8,7 @@ resource "google_dataproc_metastore_service" "default" {
   location   = "us-central1"
 
   encryption_config {
-    kms_key = google_kms_crypto_key.crypto_key.id
+    kms_key = "acctest.BootstrapKMSKeyWithPurposeInLocationAndName(t, "ENCRYPT_DECRYPT", "us-central1", "tf-bootstrap-metastore-service-key1").CryptoKey.Name-${local.name_suffix}"
   }
 
   hive_metastore_config {
@@ -21,27 +21,15 @@ resource "google_dataproc_metastore_service" "default" {
   ]
 }
 
-resource "google_kms_crypto_key" "crypto_key" {
-  name     = "example-key-${local.name_suffix}"
-  key_ring = google_kms_key_ring.key_ring.id
-
-  purpose  = "ENCRYPT_DECRYPT"
-}
-
-resource "google_kms_key_ring" "key_ring" {
-  name     = "example-keyring-${local.name_suffix}"
-  location = "us-central1"
-}
-
 resource "google_kms_crypto_key_iam_member" "crypto_key_member_1" {
-  crypto_key_id = google_kms_crypto_key.crypto_key.id
+  crypto_key_id = "acctest.BootstrapKMSKeyWithPurposeInLocationAndName(t, "ENCRYPT_DECRYPT", "us-central1", "tf-bootstrap-metastore-service-key1").CryptoKey.Name-${local.name_suffix}"
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
 
   member = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-metastore.iam.gserviceaccount.com"
 }
 
 resource "google_kms_crypto_key_iam_member" "crypto_key_member_2" {
-  crypto_key_id = google_kms_crypto_key.crypto_key.id
+  crypto_key_id = "acctest.BootstrapKMSKeyWithPurposeInLocationAndName(t, "ENCRYPT_DECRYPT", "us-central1", "tf-bootstrap-metastore-service-key1").CryptoKey.Name-${local.name_suffix}"
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
 
   member = "serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"
