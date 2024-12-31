@@ -16,7 +16,8 @@ resource "google_artifact_registry_repository" "my-repo" {
   remote_repository_config {
     description = "pull-through cache of another Artifact Registry repository by URL"
     common_repository {
-      uri         = "https://us-central1-docker.pkg.dev//example-upstream-repo-${local.name_suffix}"
+      uri         = "https://us-central1-docker.pkg.dev/${data.google_project.project.project_id}/example-upstream-repo-${local.name_suffix}"
     }
   }
+  depends_on = [google_artifact_registry_repository.upstream_repo]
 }
