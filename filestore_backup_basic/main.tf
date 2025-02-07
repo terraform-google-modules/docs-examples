@@ -1,5 +1,5 @@
 resource "google_filestore_instance" "instance" {
-  name     = "tf-fs-inst-${local.name_suffix}"
+  name     = "fs-inst-${local.name_suffix}"
   location = "us-central1-b"
   tier     = "BASIC_HDD"
 
@@ -16,7 +16,7 @@ resource "google_filestore_instance" "instance" {
 }
 
 resource "google_filestore_backup" "backup" {
-  name              = "tf-fs-bkup-${local.name_suffix}"
+  name              = "fs-bkup-${local.name_suffix}"
   location          = "us-central1"
   description       = "This is a filestore backup for the test instance"
   source_instance   = google_filestore_instance.instance.id
