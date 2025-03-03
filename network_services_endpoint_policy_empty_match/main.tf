@@ -1,5 +1,4 @@
 resource "google_network_services_endpoint_policy" "default" {
-  provider               = google-beta
   name                   = "my-endpoint-policy-${local.name_suffix}"
   labels                 = {
     foo = "bar"

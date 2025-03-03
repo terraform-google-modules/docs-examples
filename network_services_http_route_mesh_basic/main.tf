@@ -1,5 +1,4 @@
 resource "google_network_services_mesh" "default" {
-  provider    = google-beta
   name        = "my-http-route-${local.name_suffix}"
   labels      = {
     foo = "bar"
@@ -8,7 +7,6 @@ resource "google_network_services_mesh" "default" {
 }
 
 resource "google_network_services_http_route" "default" {
-  provider               = google-beta
   name                   = "my-http-route-${local.name_suffix}"
   labels                 = {
     foo = "bar"
