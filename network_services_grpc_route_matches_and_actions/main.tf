@@ -1,5 +1,4 @@
 resource "google_network_services_grpc_route" "default" {
-  provider               = google-beta
   name                   = "my-grpc-route-${local.name_suffix}"
   labels                 = {
     foo = "bar"

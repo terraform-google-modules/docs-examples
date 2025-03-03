@@ -1,11 +1,9 @@
 resource "google_compute_backend_service" "default" {
-  provider               = google-beta
   name          = "my-backend-service-${local.name_suffix}"
   health_checks = [google_compute_http_health_check.default.id]
 }
 
 resource "google_compute_http_health_check" "default" {
-  provider               = google-beta
   name               = "backend-service-health-check-${local.name_suffix}"
   request_path       = "/"
   check_interval_sec = 1
@@ -13,7 +11,6 @@ resource "google_compute_http_health_check" "default" {
 }
 
 resource "google_network_services_mesh" "default" {
-  provider    = google-beta
   name        = "my-tls-route-${local.name_suffix}"
   labels      = {
     foo = "bar"
@@ -23,7 +20,6 @@ resource "google_network_services_mesh" "default" {
 
 
 resource "google_network_services_tls_route" "default" {
-  provider               = google-beta
   name                   = "my-tls-route-${local.name_suffix}"
   description             = "my description"
   meshes = [
