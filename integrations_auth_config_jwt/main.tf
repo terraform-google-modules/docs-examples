@@ -1,9 +1,5 @@
-resource "google_integrations_client" "client" {
-  location = "us-west4"
-}
-
 resource "google_integrations_auth_config" "jwt_example" {
-    location = "us-west4"
+    location = "us-east4"
     display_name = "test-authconfig-jwt-${local.name_suffix}"
     description = "Test auth config created via terraform"
     decrypted_credential {
@@ -14,5 +10,4 @@ resource "google_integrations_auth_config" "jwt_example" {
             secret = "secret"
         }
     }
-    depends_on = [google_integrations_client.client]
 }

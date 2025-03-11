@@ -1,9 +1,5 @@
-resource "google_integrations_client" "client" {
-  location = "northamerica-northeast2"
-}
-
 resource "google_integrations_auth_config" "username_and_password_example" {
-    location = "northamerica-northeast2"
+    location = "us-east4"
     display_name = "test-authconfig-username-and-password-${local.name_suffix}"
     description = "Test auth config created via terraform"
     decrypted_credential {
@@ -13,5 +9,4 @@ resource "google_integrations_auth_config" "username_and_password_example" {
             password = "test-password"
         }
     }
-    depends_on = [google_integrations_client.client]
 }
