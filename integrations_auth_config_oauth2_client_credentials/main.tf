@@ -1,9 +1,5 @@
-resource "google_integrations_client" "client" {
-  location = "southamerica-east1"
-}
-
 resource "google_integrations_auth_config" "oauth2_client_credentials_example" {
-    location = "southamerica-east1"
+    location = "us-east4"
     display_name = "test-authconfig-oauth2-client-credentials-${local.name_suffix}"
     description = "Test auth config created via terraform"
     decrypted_credential {
@@ -30,5 +26,4 @@ resource "google_integrations_auth_config" "oauth2_client_credentials_example" {
             }
         }
     }
-    depends_on = [google_integrations_client.client]
 }

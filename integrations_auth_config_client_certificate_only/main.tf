@@ -1,9 +1,5 @@
-resource "google_integrations_client" "client" {
-  location = "us-west3"
-}
-
 resource "google_integrations_auth_config" "client_certificate_example" {
-    location = "us-west3"
+    location = "us-east4"
     display_name = "test-authconfig-client-certificate-${local.name_suffix}"
     description = "Test auth config created via terraform"
     decrypted_credential {
@@ -59,5 +55,4 @@ UwKadZbfwbVF5ipu59UxfVE3lipf/mYePDqMkHVWv/8p+OnnJt9uKnyW8VSOu5uk
 EOT
         passphrase = ""
     }
-    depends_on = [google_integrations_client.client]
 }

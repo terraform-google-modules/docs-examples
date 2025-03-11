@@ -1,9 +1,5 @@
-resource "google_integrations_client" "client" {
-  location = "asia-east1"
-}
-
 resource "google_integrations_auth_config" "oauth2_authotization_code_example" {
-    location = "asia-east1"
+    location = "us-east4"
     display_name = "test-authconfig-oauth2-authorization-code-${local.name_suffix}"
     description = "Test auth config created via terraform"
     decrypted_credential {
@@ -16,5 +12,4 @@ resource "google_integrations_auth_config" "oauth2_authotization_code_example" {
             token_endpoint = "https://authorization-server.com/token"
         }
     }
-    depends_on = [google_integrations_client.client]
 }
