@@ -22,6 +22,7 @@ resource "google_bigtable_table" "table" {
 resource "google_bigtable_logical_view" "logical_view" {
   logical_view_id = "bt-logical-view-${local.name_suffix}"
   instance        = google_bigtable_instance.instance.name
+  deletion_protection  = false
   query = <<EOT
 SELECT _key, CF
 FROM ` + "`bt-table-${local.name_suffix}`" + `
