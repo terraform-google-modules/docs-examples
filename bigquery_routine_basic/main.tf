@@ -7,5 +7,6 @@ resource "google_bigquery_routine" "sproc" {
   routine_id     = "routine_id-${local.name_suffix}"
   routine_type = "PROCEDURE"
   language = "SQL"
+  security_mode = "INVOKER"
   definition_body = "CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);"
 }
