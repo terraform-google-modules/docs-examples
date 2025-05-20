@@ -65,7 +65,4 @@ resource "google_dialogflow_cx_agent" "full_agent" {
       }
     })
   }
-  gen_app_builder_settings {
-    engine = "projects/-/locations/-/collections/-/engines/-"
-  }
 }
