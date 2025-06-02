@@ -1,6 +1,4 @@
 resource "google_compute_region_security_policy" "region-sec-policy-user-defined-fields" {
-  provider    = google-beta  
-
   name        = "my-sec-policy-user-defined-fields-${local.name_suffix}"
   description = "with user defined fields"
   type        = "CLOUD_ARMOR_NETWORK"
