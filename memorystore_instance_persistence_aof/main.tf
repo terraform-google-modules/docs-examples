@@ -1,7 +1,7 @@
 resource "google_memorystore_instance" "instance-persistence-aof" {
   instance_id = "aof-instance-${local.name_suffix}"
-  shard_count = 3
-  desired_psc_auto_connections {
+  shard_count = 1
+  desired_auto_created_endpoints {
     network    = google_compute_network.producer_net.id
     project_id = data.google_project.project.project_id
   }
