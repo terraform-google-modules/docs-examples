@@ -2,7 +2,7 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   name     = "cloudrun-worker-pool-${local.name_suffix}"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "ALPHA"
+  launch_stage = "BETA"
 
   custom_audiences = ["aud1"]
   template {

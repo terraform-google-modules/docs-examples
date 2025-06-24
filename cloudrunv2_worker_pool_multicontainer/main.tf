@@ -2,13 +2,12 @@ resource "google_cloud_run_v2_worker_pool" "default" {
   name     = "cloudrun-worker-pool-${local.name_suffix}"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "ALPHA"
+  launch_stage = "BETA"
 
   template {
     containers {
       name = "hello-1"
       image = "us-docker.pkg.dev/cloudrun/container/worker-pool"
-      depends_on = ["hello-2"]
       volume_mounts {
         name = "empty-dir-volume"
         mount_path = "/mnt"
