@@ -9,7 +9,7 @@ resource "google_compute_region_backend_service" "default" {
 
   region      = "us-central1"
   name        = "region-service-${local.name_suffix}"
-  protocol    = "HTTP"
+  protocol    = "H2C"
   timeout_sec = 10
 
   health_checks = [google_compute_region_health_check.default.id]

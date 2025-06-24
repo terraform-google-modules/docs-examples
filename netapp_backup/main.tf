@@ -1,5 +1,5 @@
 data "google_compute_network" "default" {
-  name = ""
+  name = "network-${local.name_suffix}"
 }
 
 resource "google_netapp_storage_pool" "default" {
