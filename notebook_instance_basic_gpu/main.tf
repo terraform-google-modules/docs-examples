@@ -10,6 +10,6 @@ resource "google_notebooks_instance" "instance" {
   }
   vm_image {
     project      = "deeplearning-platform-release"
-    image_family = "tf-latest-gpu"
+    image_family = "pytorch-latest-cu124"
   }
 }
