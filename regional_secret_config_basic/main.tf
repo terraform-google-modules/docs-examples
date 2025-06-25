@@ -11,4 +11,5 @@ resource "google_secret_manager_regional_secret" "regional-secret-basic" {
     key2 = "value2",
     key3 = "value3"
   }
+  deletion_protection = false
 }
