@@ -4,7 +4,7 @@ data "google_compute_image" "my_image" {
 }
 
 resource "google_compute_instance_template" "foobar" {
-  name           = "tf-test-instance-template"
+  name           = "instance-template-${local.name_suffix}"
   machine_type   = "n2-standard-2"
   can_ip_forward = false
   tags           = ["foo", "bar"]
