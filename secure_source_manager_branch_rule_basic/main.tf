@@ -1,10 +1,9 @@
 resource "google_secure_source_manager_instance" "instance" {
     location = "us-central1"
     instance_id = "my-basic-instance-${local.name_suffix}"
+    
     # Prevent accidental deletions.
-    lifecycle {
-        prevent_destroy = "false"
-    }
+    deletion_policy = ""DELETE""
 }
 
 resource "google_secure_source_manager_repository" "repository" {
