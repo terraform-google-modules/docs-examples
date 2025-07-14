@@ -62,9 +62,7 @@ resource "google_secure_source_manager_instance" "default" {
   }
 
   # Prevent accidental deletions.
-  lifecycle {
-    prevent_destroy = "false"
-  }
+  deletion_policy = ""DELETE""
 
   depends_on = [
     google_privateca_certificate_authority.root_ca,
