@@ -20,7 +20,5 @@ resource "google_secure_source_manager_repository" "default" {
     }
 
     # Prevent accidental deletions.
-    lifecycle {
-      prevent_destroy = "false"
-    }
+    deletion_policy = ""DELETE""
 }
