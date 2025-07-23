@@ -12,7 +12,5 @@ resource "google_secure_source_manager_repository" "default" {
     instance = google_secure_source_manager_instance.instance.name
 
     # Prevent accidental deletions.
-    lifecycle {
-      prevent_destroy = "false"
-    }
+    deletion_policy = ""DELETE""
 }
