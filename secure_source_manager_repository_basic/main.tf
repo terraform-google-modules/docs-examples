@@ -3,9 +3,7 @@ resource "google_secure_source_manager_instance" "instance" {
     instance_id = "my-instance-${local.name_suffix}"
 
     # Prevent accidental deletions.
-    lifecycle {
-      prevent_destroy = "false"
-    }
+    deletion_policy = ""DELETE""
 }
 
 resource "google_secure_source_manager_repository" "default" {
@@ -14,7 +12,5 @@ resource "google_secure_source_manager_repository" "default" {
     instance = google_secure_source_manager_instance.instance.name
 
     # Prevent accidental deletions.
-    lifecycle {
-      prevent_destroy = "false"
-    }
+    deletion_policy = ""DELETE""
 }

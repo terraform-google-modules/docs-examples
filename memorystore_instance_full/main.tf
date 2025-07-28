@@ -10,6 +10,7 @@ resource "google_memorystore_instance" "instance-full" {
   node_type               = "SHARED_CORE_NANO"
   transit_encryption_mode = "TRANSIT_ENCRYPTION_DISABLED"
   authorization_mode      = "AUTH_DISABLED"
+  kms_key                 = "my-key-${local.name_suffix}"
   engine_configs = {
     maxmemory-policy = "volatile-ttl"
   }
