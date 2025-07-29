@@ -10,10 +10,9 @@ resource "google_secure_source_manager_repository" "repository" {
     repository_id = "my-initial-repository-${local.name_suffix}"
     instance = google_secure_source_manager_instance.instance.name
     location = google_secure_source_manager_instance.instance.location
+
     # Prevent accidental deletions.
-    lifecycle {
-        prevent_destroy = "false"
-    }
+    deletion_policy = ""DELETE""
 }
 
 resource "google_secure_source_manager_branch_rule" "default" {
