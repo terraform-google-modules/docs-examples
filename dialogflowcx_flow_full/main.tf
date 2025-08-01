@@ -410,7 +410,7 @@ resource "google_dialogflow_cx_flow" "basic_flow" {
 
 resource "google_discovery_engine_data_store" "my_datastore" {
   location          = "global"
-  data_store_id     = "datastore-flow-full"
+  data_store_id     = "datastore-flow-full-${local.name_suffix}"
   display_name      = "datastore-flow-full"
   industry_vertical = "GENERIC"
   content_config    = "NO_CONTENT"
