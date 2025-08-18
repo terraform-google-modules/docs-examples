@@ -44,6 +44,8 @@ resource "google_alloydb_cluster" "full" {
   labels = {
     test = "alloydb-cluster-full-${local.name_suffix}"
   }
+
+  deletion_protection = false
 }
 
 data "google_project" "project" {}
