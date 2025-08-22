@@ -62,6 +62,8 @@ resource "google_alloydb_cluster" "destination_alloydb" {
     user     = "destination-alloydb-${local.name_suffix}"
     password = "destination-alloydb-${local.name_suffix}"
   }
+
+  deletion_protection = false
 }
 
 resource "google_alloydb_instance" "destination_alloydb_primary" {
