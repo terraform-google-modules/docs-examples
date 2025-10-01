@@ -2,7 +2,6 @@ resource "google_storage_insights_dataset_config" "config_excludes" {
     location = "us-central1"
     dataset_config_id = "my_config_excludes-${local.name_suffix}"
     retention_period_days = 1
-    activity_data_retention_period_days = 2
     organization_scope = true
     identity {
         type = "IDENTITY_TYPE_PER_PROJECT"
