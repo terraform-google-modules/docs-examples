@@ -18,4 +18,6 @@ resource "google_alloydb_cluster" "default" {
   psc_config {
     psc_enabled = true
   }
+
+  deletion_protection = false
 }
