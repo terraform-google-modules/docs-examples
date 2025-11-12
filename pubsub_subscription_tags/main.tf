@@ -15,6 +15,7 @@ data "google_project" "project" {}
 resource "google_tags_tag_key" "tag_key" {
   parent     = data.google_project.project.id
   short_name = "tag_key-${local.name_suffix}"
+  depends_on = [google_pubsub_topic.example]
 }
 
 resource "google_tags_tag_value" "tag_value" {

@@ -18,6 +18,10 @@ resource "google_alloydb_cluster" "default" {
     network = data.google_compute_network.default.id
   }
 
+  initial_user {
+    password = "alloydb-cluster-${local.name_suffix}"
+  }
+
   deletion_protection = false
 }
 

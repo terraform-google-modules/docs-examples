@@ -1,3 +1,7 @@
+resource "google_compute_network" "default" {
+  name = "psc-network-${local.name_suffix}-%{random_suffix}"
+}
+
 resource "google_vertex_ai_endpoint" "endpoint" {
   name         = "endpoint-name%{random_suffix}"
   display_name = "sample-endpoint"
@@ -12,6 +16,11 @@ resource "google_vertex_ai_endpoint" "endpoint" {
     project_allowlist = [
       "${data.google_project.project.project_id}"
     ]
+
+    psc_automation_configs {
+      project_id = data.google_project.project.project_id
+      network    = google_compute_network.default.id
+    }
   }
 }
 
