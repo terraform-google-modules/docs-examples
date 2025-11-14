@@ -2,7 +2,6 @@ resource "google_cloud_run_v2_job" "default" {
   name     = "cloudrun-job-${local.name_suffix}"
   location = "us-central1"
   deletion_protection = false
-  launch_stage = "BETA"
   template {
     template {
       containers {
