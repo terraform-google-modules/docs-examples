@@ -3,6 +3,3 @@ resource "google_vertex_ai_reasoning_engine" "reasoning_engine" {
   description  = "A basic reasoning engine"
   region       = "us-central1"
 }
-
-data "google_project" "project" {
-}
