@@ -1,0 +1,62 @@
+resource "google_dialogflow_cx_agent" "agent" {
+  display_name = "dialogflowcx-agent-data-store-${local.name_suffix}"
+  location = "global"
+  default_language_code = "en"
+  time_zone = "America/New_York"
+  description = "Example description."
+  delete_chat_engine_on_destroy = true
+  depends_on = [
+    google_discovery_engine_data_store.my_datastore
+  ]
+}
+
+resource "google_dialogflow_cx_tool" "tool" {
+  parent       = google_dialogflow_cx_agent.agent.id
+  display_name = "datastore-tool-${local.name_suffix}"
+  description  = "Example Description"
+  data_store_spec {
+    data_store_connections {
+      data_store_type = "UNSTRUCTURED"
+      data_store = "projects/${data.google_project.project.number}/locations/global/collections/default_collection/dataStores/${google_discovery_engine_data_store.my_datastore.data_store_id}"
+      document_processing_mode = "DOCUMENTS"
+    }
+    fallback_prompt {} 
+  }
+  depends_on = [
+    google_discovery_engine_data_store.my_datastore,
+    google_dialogflow_cx_agent.agent
+  ]
+}
+
+resource "google_discovery_engine_data_store" "my_datastore" {
+  location          = "global"
+  data_store_id     = "datastore-tool-version-${local.name_suffix}"
+  display_name      = "datastore for Tool test"
+  industry_vertical = "GENERIC"
+  content_config    = "NO_CONTENT"
+  solution_types    = ["SOLUTION_TYPE_CHAT"]
+}
+
+resource "google_dialogflow_cx_tool_version" "data_store_tool_version" {
+  parent       = google_dialogflow_cx_tool.tool.id
+  display_name = "Example Data Store Tool Version"
+  tool {
+    display_name = "datastore-tool-${local.name_suffix}"
+    description  = "Example Description"
+    data_store_spec {
+      data_store_connections {
+        data_store_type = "UNSTRUCTURED"
+        data_store = "projects/${data.google_project.project.number}/locations/global/collections/default_collection/dataStores/${google_discovery_engine_data_store.my_datastore.data_store_id}"
+        document_processing_mode = "DOCUMENTS"
+      }
+      fallback_prompt {} 
+    }
+  }
+  depends_on = [
+    google_discovery_engine_data_store.my_datastore,
+    google_dialogflow_cx_agent.agent
+  ]
+}
+
+data "google_project" "project" {
+}
