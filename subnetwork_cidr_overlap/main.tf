@@ -1,5 +1,4 @@
 resource "google_compute_subnetwork" "subnetwork-cidr-overlap" {
-  provider = google-beta
 
   name                             = "subnet-cidr-overlap-${local.name_suffix}"
   region                           = "us-west2"
@@ -9,7 +8,6 @@ resource "google_compute_subnetwork" "subnetwork-cidr-overlap" {
 }
 
 resource "google_compute_network" "net-cidr-overlap" {
-  provider                = google-beta
 
   name                    = "net-cidr-overlap-${local.name_suffix}"
   auto_create_subnetworks = false
