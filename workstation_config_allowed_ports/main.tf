@@ -32,13 +32,27 @@ resource "google_workstations_workstation_config" "default" {
 
   host {
     gce_instance {
-      machine_type                = "n1-standard-2"
+      machine_type                = "e2-standard-4"
       boot_disk_size_gb           = 35
       disable_public_ip_addresses = true
-      accelerators {
-        type  = "nvidia-tesla-t4"
-        count = "1"
-      }
     }
+  }
+
+  # Allow only port 80 (HTTP)
+  allowed_ports {
+    first = 80
+    last  = 80
+  }
+
+  # Allow only port 22 (SSH)
+  allowed_ports {
+    first = 22
+    last  = 22
+  }
+
+  # Allow port range 1024-65535
+  allowed_ports {
+    first = 1024
+    last  = 65535
   }
 }
