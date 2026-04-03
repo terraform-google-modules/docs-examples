@@ -1,5 +1,4 @@
 resource "google_workstations_workstation_cluster" "default" {
-  provider               = google-beta
   workstation_cluster_id = "workstation-cluster-custom-domain-${local.name_suffix}"
   network                = google_compute_network.default.id
   subnetwork             = google_compute_subnetwork.default.id
@@ -23,17 +22,14 @@ resource "google_workstations_workstation_cluster" "default" {
 }
 
 data "google_project" "project" {
-  provider = google-beta
 }
 
 resource "google_compute_network" "default" {
-  provider                = google-beta
   name                    = "workstation-cluster-custom-domain-${local.name_suffix}"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "default" {
-  provider = google-beta
   name          = "workstation-cluster-custom-domain-${local.name_suffix}"
   ip_cidr_range = "10.0.0.0/24"
   region        = "us-central1"

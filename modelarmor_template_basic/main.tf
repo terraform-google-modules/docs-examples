@@ -1,6 +1,6 @@
 resource "google_model_armor_template" "template-basic" {
-  location    = "<no value>"
-  template_id = "<no value>"
+  location    = "us-central1-${local.name_suffix}"
+  template_id = "modelarmor1-${local.name_suffix}"
 
   filter_config {
 
