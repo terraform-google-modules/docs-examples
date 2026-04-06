@@ -1,5 +1,5 @@
 resource "google_dataproc_metastore_service" "backup" {
-  service_id = "backup-${local.name_suffix}"
+  service_id = "backup-1-${local.name_suffix}"
   location   = "us-central1"
   port       = 9080
   tier       = "DEVELOPER"
@@ -26,6 +26,6 @@ resource "google_dataproc_metastore_service" "backup" {
 }
 
 resource "google_storage_bucket" "bucket" {
-  name     = "backup-${local.name_suffix}"
+  name     = "backup-1-${local.name_suffix}"
   location = "us-central1"
 }

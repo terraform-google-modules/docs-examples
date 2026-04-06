@@ -22,6 +22,7 @@ resource "google_oracle_database_db_system" "my_db_system"{
                 admin_password = "ABcde_1#234"
                 database_id = "mydb-${local.name_suffix}"
                 db_name = "db"
+                db_unique_name = "db-${local.name_suffix}"
             }
         }
     }
