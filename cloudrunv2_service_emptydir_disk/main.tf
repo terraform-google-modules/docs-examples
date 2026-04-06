@@ -2,7 +2,7 @@ resource "google_cloud_run_v2_service" "default" {
   name     = "cloudrun-service-${local.name_suffix}"
   location = "us-central1"
   launch_stage = "ALPHA"
-  deletion_protection = false
+  deletion_protection =  "true-${local.name_suffix}"
   ingress = "INGRESS_TRAFFIC_ALL"
 
   template {
