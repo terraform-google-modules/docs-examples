@@ -1,21 +1,35 @@
-data "google_secret_manager_secret_version_access" "gle_ac_client_id" {
-  secret  = "gle-ac-client-id"
-  project = "devconnect-terraform-creds"
+resource "google_secret_manager_secret" "gle_ac_client_id" {
+  secret_id = "gle-ac-id-${local.name_suffix}"
+  replication {
+    auto {}
+  }
 }
 
-data "google_secret_manager_secret_version_access" "gle_ac_client_secret" {
-  secret  = "gle-ac-client-secret"
-  project = "devconnect-terraform-creds"
+resource "google_secret_manager_secret_version" "gle_ac_client_id_version" {
+  secret = google_secret_manager_secret.gle_ac_client_id.name
+  secret_data = "dummy-client-id"
+}
+
+resource "google_secret_manager_secret" "gle_ac_client_secret" {
+  secret_id = "gle-ac-sec-${local.name_suffix}"
+  replication {
+    auto {}
+  }
+}
+
+resource "google_secret_manager_secret_version" "gle_ac_client_secret_version" {
+  secret = google_secret_manager_secret.gle_ac_client_secret.name
+  secret_data = "dummy-client-secret"
 }
 
 resource "google_developer_connect_account_connector" "my-account-connector" {
   location = "us-central1"
-  account_connector_id = "tf-test-ac-${local.name_suffix}"
+  account_connector_id = "my-ac-${local.name_suffix}"
 
   custom_oauth_config {
     auth_uri = "https://gle-us-central1.gcb-test.com/oauth/authorize"
-    client_id = data.google_secret_manager_secret_version_access.gle_ac_client_id.secret_data
-    client_secret = data.google_secret_manager_secret_version_access.gle_ac_client_secret.secret_data
+    client_id = google_secret_manager_secret_version.gle_ac_client_id_version.secret_data
+    client_secret = google_secret_manager_secret_version.gle_ac_client_secret_version.secret_data
     token_uri = "https://gle-us-central1.gcb-test.com/oauth/token"
     host_uri = "https://gle-us-central1.gcb-test.com"
     scm_provider = "GITLAB_ENTERPRISE"
