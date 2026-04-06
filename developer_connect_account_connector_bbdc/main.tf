@@ -1,21 +1,35 @@
-data "google_secret_manager_secret_version_access" "bbdc_ac_client_id" {
-  secret  = "bbdc-ac-client-id"
-  project = "devconnect-terraform-creds"
+resource "google_secret_manager_secret" "bbdc_ac_priv_client_id" {
+  secret_id = "bbdc-ac-id-${local.name_suffix}"
+  replication {
+    auto {}
+  }
 }
 
-data "google_secret_manager_secret_version_access" "bbdc_ac_client_secret" {
-  secret  = "bbdc-ac-client-secret"
-  project = "devconnect-terraform-creds"
+resource "google_secret_manager_secret_version" "bbdc_ac_priv_client_id_version" {
+  secret = google_secret_manager_secret.bbdc_ac_priv_client_id.name
+  secret_data = "dummy-client-id"
+}
+
+resource "google_secret_manager_secret" "bbdc_ac_priv_client_secret" {
+  secret_id = "bbdc-ac-sec-${local.name_suffix}"
+  replication {
+    auto {}
+  }
+}
+
+resource "google_secret_manager_secret_version" "bbdc_ac_priv_client_secret_version" {
+  secret = google_secret_manager_secret.bbdc_ac_priv_client_secret.name
+  secret_data = "dummy-client-secret"
 }
 
 resource "google_developer_connect_account_connector" "my-account-connector" {
   location = "us-central1"
-  account_connector_id = "tf-test-ac-${local.name_suffix}"
+  account_connector_id = "my-ac-${local.name_suffix}"
 
   custom_oauth_config {
     auth_uri = "https://bitbucket-us-central.gcb-test.com/rest/oauth2/latest/authorize"
-    client_id = data.google_secret_manager_secret_version_access.bbdc_ac_client_id.secret_data
-    client_secret = data.google_secret_manager_secret_version_access.bbdc_ac_client_secret.secret_data
+    client_id = google_secret_manager_secret_version.bbdc_ac_priv_client_id_version.secret_data
+    client_secret = google_secret_manager_secret_version.bbdc_ac_priv_client_secret_version.secret_data
     token_uri = "https://bitbucket-us-central.gcb-test.com/rest/oauth2/latest/token"
     host_uri = "https://bitbucket-us-central.gcb-test.com"
     scm_provider = "BITBUCKET_DATA_CENTER"
