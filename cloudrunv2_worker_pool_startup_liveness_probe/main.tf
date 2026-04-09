@@ -13,7 +13,6 @@ resource "google_compute_subnetwork" "custom_test" {
 resource "google_cloud_run_v2_worker_pool" "default" {
   name                = "cloudrun-worker-pool-${local.name_suffix}"
   location            = "us-central1"
-  launch_stage        = "BETA"
   deletion_protection = false
 
   template {
