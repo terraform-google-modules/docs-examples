@@ -6,7 +6,7 @@ locals {
 }
 
 resource "google_hypercomputecluster_cluster" "cluster" {
-  cluster_id                  = "my-cluster-${local.name_suffix}"
+  cluster_id                  = "mycluster1-${local.name_suffix}"
   location                    = "us-central1"
   description                 = "Cluster Director instance created through Terraform"
   network_resources {
