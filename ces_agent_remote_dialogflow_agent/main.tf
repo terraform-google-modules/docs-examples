@@ -23,7 +23,7 @@ resource "google_ces_agent" "ces_agent_remote_dialogflow_agent" {
   display_name = "my-agent-${local.name_suffix}"
 
   model_settings {
-    model       = "gemini-2.5-flash-001"
+    model       = "gemini-1.5-flash"
     temperature = 0.5
   }
 
