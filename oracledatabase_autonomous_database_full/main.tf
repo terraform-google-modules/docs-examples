@@ -5,8 +5,6 @@ resource "google_oracle_database_autonomous_database" "myADB"{
   display_name = "autonomousDatabase displayname"
   database = "mydatabase-${local.name_suffix}"
   admin_password = "123Abpassword"
-  odb_network = "projects/my-project/locations/us-east4/odbNetworks/my-odbnetwork-${local.name_suffix}"
-  odb_subnet = "projects/my-project/locations/us-east4/odbNetworks/my-odbnetwork/odbSubnets/my-odbsubnet-${local.name_suffix}"
   network = data.google_compute_network.default.id
   cidr = "10.5.0.0/24"
   labels = {
