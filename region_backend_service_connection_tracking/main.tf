@@ -1,5 +1,4 @@
 resource "google_compute_region_backend_service" "default" {
-  provider                        = google-beta
   name                            = "region-service-${local.name_suffix}"
   region                          = "us-central1"
   health_checks                   = [google_compute_region_health_check.health_check.id]
@@ -11,12 +10,11 @@ resource "google_compute_region_backend_service" "default" {
     tracking_mode                                = "PER_SESSION"
     connection_persistence_on_unhealthy_backends = "NEVER_PERSIST"
     idle_timeout_sec                             = 60
-    enable_strong_affinity                       = true
+    enable_strong_affinity                       = false
   }
 }
 
 resource "google_compute_region_health_check" "health_check" {
-  provider           = google-beta
   name               = "rbs-health-check-${local.name_suffix}"
   region             = "us-central1"
 
