@@ -1,6 +1,6 @@
 resource "google_database_migration_service_private_connection" "default" {
 	display_name          = "dbms_pc"
-	location              = "us-central1"
+	location              = "us-west1"
 	private_connection_id = "my-connection-${local.name_suffix}"
 
 	labels = {
@@ -16,7 +16,7 @@ resource "google_database_migration_service_private_connection" "default" {
 
 resource "google_compute_network_attachment" "default" {
   name                  = "my-attachment-${local.name_suffix}"
-  region                = "us-central1"
+  region                = "us-west1"
   connection_preference = "ACCEPT_AUTOMATIC"
   subnetworks           = [resource.google_compute_subnetwork.default.id]
 }
@@ -29,6 +29,6 @@ resource "google_compute_network" "default" {
 resource "google_compute_subnetwork" "default" {
   name          = "my-subnetwork-${local.name_suffix}"
   ip_cidr_range = "10.0.0.0/16"
-  region        = "us-central1"
+  region        = "us-west1"
   network       = google_compute_network.default.id
 }
