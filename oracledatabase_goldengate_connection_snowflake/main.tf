@@ -1,8 +1,8 @@
 resource "google_oracle_database_goldengate_connection" "connection" {
   goldengate_connection_id = "my-connection-${local.name_suffix}"
-  location                 = "us-east4"
+  location                 = "europe-west3"
   project                  = "my-project-${local.name_suffix}"
-  gcp_oracle_zone          = "us-east4-b-r1"
+  gcp_oracle_zone          = "europe-west3-b-r1"
 
   properties {
     display_name    = "my-connection-${local.name_suffix} display name"
