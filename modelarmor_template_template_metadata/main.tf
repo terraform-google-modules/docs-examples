@@ -22,5 +22,8 @@ resource "google_model_armor_template" "template-template-metadata" {
     custom_prompt_safety_error_message       = "This is a custom error message for prompt-${local.name_suffix}"
     custom_llm_response_safety_error_code    = 401-${local.name_suffix}
     enforcement_type                         = "INSPECT_ONLY-${local.name_suffix}"
+    filter_version_selector {
+      alias = "FILTER_VERSION_ALIAS_LATEST-${local.name_suffix}"
+    }
   }
 }
