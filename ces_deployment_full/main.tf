@@ -6,11 +6,18 @@ resource "google_ces_app" "my-app" {
         time_zone = "America/Los_Angeles"
     }
 }
+resource "google_ces_app_version" "my-app-version" {
+    location       = "us"
+    display_name   = "my-app-version-${local.name_suffix}"
+    app            = google_ces_app.my-app.name
+    app_version_id = "app-version-id-${local.name_suffix}"
+    description    = "example-app-version"
+}
 resource "google_ces_deployment" "my-deployment" {
     location     = "us"
     display_name = "my-deployment-${local.name_suffix}"
     app          = google_ces_app.my-app.name
-    app_version  = "projects/example-project/locations/us/apps/example-app/versions/example-version"
+    app_version  = google_ces_app_version.my-app-version.id
     channel_profile {
         channel_type = "API"
         disable_barge_in_control = true
