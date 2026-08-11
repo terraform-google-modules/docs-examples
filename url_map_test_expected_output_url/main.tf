@@ -9,10 +9,11 @@ resource "google_compute_health_check" "health-check-${local.name_suffix}" {
 }
 
 resource "google_compute_backend_service" "backend-${local.name_suffix}" {
-  name        = "backend-${local.name_suffix}"
-  port_name   = "http"
-  protocol    = "HTTP"
-  timeout_sec = 10
+  name                  = "backend-${local.name_suffix}"
+  port_name             = "http"
+  protocol              = "HTTP"
+  timeout_sec           = 10
+  load_balancing_scheme = "EXTERNAL"
 
   health_checks = [google_compute_health_check.health-check-${local.name_suffix}.id]
 }
