@@ -3,7 +3,7 @@ resource "google_oracle_database_odb_subnet" "my-odbsubnet"{
   location = "europe-west2"
   project = "my-project-${local.name_suffix}"
   odbnetwork = "my-odbnetwork-${local.name_suffix}"
-  cidr_range = "10.1.1.0/24"
+  cidr_range = "10.1.1.0/24-${local.name_suffix}"
   purpose = "CLIENT_SUBNET"
   labels = {
     terraform_created = "true"
