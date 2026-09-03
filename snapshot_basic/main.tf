@@ -9,7 +9,7 @@ resource "google_compute_snapshot" "snapshot" {
 }
 
 data "google_compute_image" "debian" {
-  family  = "debian-11"
+  family  = "debian-13"
   project = "debian-cloud"
 }
 
