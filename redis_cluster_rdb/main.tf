@@ -4,7 +4,7 @@ resource "google_redis_cluster" "cluster-rdb" {
   psc_configs {
     network = google_compute_network.consumer_net.id
   }
-  region = "us-central1"
+  region = "us-west1"
   replica_count = 0
   node_type = "REDIS_SHARED_CORE_NANO"
   transit_encryption_mode = "TRANSIT_ENCRYPTION_MODE_DISABLED"
@@ -42,7 +42,7 @@ resource "google_redis_cluster" "cluster-rdb" {
 
 resource "google_network_connectivity_service_connection_policy" "default" {
   name = "my-policy-${local.name_suffix}"
-  location = "us-central1"
+  location = "us-west1"
   service_class = "gcp-memorystore-redis"
   description   = "my basic service connection policy"
   network = google_compute_network.consumer_net.id
@@ -54,7 +54,7 @@ resource "google_network_connectivity_service_connection_policy" "default" {
 resource "google_compute_subnetwork" "consumer_subnet" {
   name          = "my-subnet-${local.name_suffix}"
   ip_cidr_range = "10.0.0.248/29"
-  region        = "us-central1"
+  region        = "us-west1"
   network       = google_compute_network.consumer_net.id
 }
 
