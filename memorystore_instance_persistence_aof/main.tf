@@ -5,7 +5,7 @@ resource "google_memorystore_instance" "instance-persistence-aof" {
     network    = google_compute_network.producer_net.id
     project_id = data.google_project.project.project_id
   }
-  location = "us-central1"
+  location = "us-west1"
   persistence_config {
     mode = "AOF"
     aof_config {
@@ -23,7 +23,7 @@ resource "google_memorystore_instance" "instance-persistence-aof" {
 
 resource "google_network_connectivity_service_connection_policy" "default" {
   name          = "my-policy-${local.name_suffix}"
-  location      = "us-central1"
+  location      = "us-west1"
   service_class = "gcp-memorystore"
   description   = "my basic service connection policy"
   network       = google_compute_network.producer_net.id
@@ -35,7 +35,7 @@ resource "google_network_connectivity_service_connection_policy" "default" {
 resource "google_compute_subnetwork" "producer_subnet" {
   name          = "my-subnet-${local.name_suffix}"
   ip_cidr_range = "10.0.0.248/29"
-  region        = "us-central1"
+  region        = "us-west1"
   network       = google_compute_network.producer_net.id
 }
 

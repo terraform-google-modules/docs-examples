@@ -3,7 +3,7 @@ data "google_project" "project" {}
 resource "google_memorystore_instance" "test-instance" {
   instance_id  = "ca-instance-${local.name_suffix}"
   shard_count = 3
-  location     = "us-central1"
+  location     = "us-west1"
   
   desired_auto_created_endpoints {
     network    = google_compute_network.producer_net.id
@@ -26,7 +26,7 @@ resource "google_memorystore_instance" "test-instance" {
 
 resource "google_privateca_ca_pool" "default" {
   name     = "ca-pool-${local.name_suffix}"
-  location = "us-central1"
+  location = "us-west1"
   tier     = "ENTERPRISE"
 }
 
@@ -39,7 +39,7 @@ resource "google_privateca_ca_pool_iam_member" "memorystore_p4sa_requester" {
 resource "google_privateca_certificate_authority" "default" {
   pool                     = google_privateca_ca_pool.default.name
   certificate_authority_id = "ca-auth-${local.name_suffix}"
-  location                 = "us-central1"
+  location                 = "us-west1"
   config {
     subject_config {
       subject {
@@ -73,7 +73,7 @@ resource "google_privateca_certificate_authority" "default" {
 
 resource "google_network_connectivity_service_connection_policy" "default" {
   name           = "ca-policy-${local.name_suffix}"
-  location       = "us-central1"
+  location       = "us-west1"
   service_class  = "gcp-memorystore"
   network        = google_compute_network.producer_net.id
   psc_config {
@@ -84,7 +84,7 @@ resource "google_network_connectivity_service_connection_policy" "default" {
 resource "google_compute_subnetwork" "producer_subnet" {
   name          = "ca-subnet-${local.name_suffix}"
   ip_cidr_range = "10.0.0.248/29"
-  region        = "us-central1"
+  region        = "us-west1"
   network       = google_compute_network.producer_net.id
 }
 
