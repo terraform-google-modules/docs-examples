@@ -16,7 +16,7 @@ resource "google_project_iam_member" "storage_viewer" {
 }
 
 resource "google_storage_bucket" "bucket" {
-  name     = "tf-test-gae-bkt-bundled-${local.name_suffix}"
+  name     = "gae-bkt-bundled-${local.name_suffix}"
   location = "US"
 }
 
