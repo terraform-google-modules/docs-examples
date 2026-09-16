@@ -1,5 +1,5 @@
 resource "google_vertex_ai_endpoint" "endpoint" {
-  name         = "endpoint-name%{random_suffix}"
+  name         = "endpoint-name-${local.name_suffix}"
   display_name = "sample-endpoint"
   description  = "A sample vertex endpoint"
   location     = "us-central1"
