@@ -21,14 +21,14 @@ resource "google_compute_network" "network" {
 }
 
 resource "google_compute_subnetwork" "network_subnet1" {
-  name          = "ha-vpn-subnet-1"
+  name          = "ha-vpn-subnet-1-${local.name_suffix}"
   ip_cidr_range = "10.0.1.0/24"
   region        = "us-central1"
   network       = google_compute_network.network.id
 }
 
 resource "google_compute_subnetwork" "network_subnet2" {
-  name          = "ha-vpn-subnet-2"
+  name          = "ha-vpn-subnet-2-${local.name_suffix}"
   ip_cidr_range = "10.0.2.0/24"
   region        = "us-west1"
   network       = google_compute_network.network.id
@@ -43,7 +43,7 @@ resource "google_compute_router" "router1" {
 }
 
 resource "google_compute_vpn_tunnel" "tunnel1" {
-  name                            = "ha-vpn-tunnel1"
+  name                            = "ha-vpn-tunnel1-${local.name_suffix}"
   region                          = "us-central1"
   vpn_gateway                     = google_compute_ha_vpn_gateway.ha_gateway.id
   peer_external_gateway           = google_compute_external_vpn_gateway.external_gateway.id
@@ -54,7 +54,7 @@ resource "google_compute_vpn_tunnel" "tunnel1" {
 }
 
 resource "google_compute_vpn_tunnel" "tunnel2" {
-  name                            = "ha-vpn-tunnel2"
+  name                            = "ha-vpn-tunnel2-${local.name_suffix}"
   region                          = "us-central1"
   vpn_gateway                     = google_compute_ha_vpn_gateway.ha_gateway.id
   peer_external_gateway           = google_compute_external_vpn_gateway.external_gateway.id
