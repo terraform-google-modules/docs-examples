@@ -18,7 +18,7 @@ resource "google_compute_region_backend_service" "backend" {
 }
 
 resource "google_compute_health_check" "hc" {
-  name               = "check-ilb-ipv6-backend-${local.name_suffix}"
+  name               = "ilb-ipv6-backend-${local.name_suffix}-check"
   check_interval_sec = 1
   timeout_sec        = 1
 

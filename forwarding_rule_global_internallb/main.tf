@@ -15,7 +15,7 @@ resource "google_compute_region_backend_service" "backend" {
   health_checks         = [google_compute_health_check.hc.id]
 }
 resource "google_compute_health_check" "hc" {
-  name               = "check-website-backend-${local.name_suffix}"
+  name               = "website-backend-${local.name_suffix}-check"
   check_interval_sec = 1
   timeout_sec        = 1
   tcp_health_check {
