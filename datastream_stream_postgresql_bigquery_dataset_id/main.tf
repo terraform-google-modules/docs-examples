@@ -1,6 +1,6 @@
 
 resource "google_bigquery_dataset" "postgres" {
-  dataset_id    = "postgres-${local.name_suffix}"
+  dataset_id    = "postgres_dataset-${local.name_suffix}"
   friendly_name = "postgres"
   description   = "Database of postgres"
   location      = "us-central1"
