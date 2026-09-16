@@ -92,7 +92,7 @@ resource "google_compute_health_check" "default" {
 }
 
 resource "google_compute_url_map" "default" {
-  name            = "url-map-target-proxy-${local.name_suffix}"
+  name            = "target-proxy-${local.name_suffix}-url-map"
   description     = "a description"
   default_service = google_compute_backend_service.default.id
 

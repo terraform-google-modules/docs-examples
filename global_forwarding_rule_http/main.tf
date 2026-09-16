@@ -11,7 +11,7 @@ resource "google_compute_target_http_proxy" "default" {
 }
 
 resource "google_compute_url_map" "default" {
-  name            = "url-map-target-proxy-${local.name_suffix}"
+  name            = "target-proxy-${local.name_suffix}-url-map"
   description     = "a description"
   default_service = google_compute_backend_service.default.id
 
@@ -41,7 +41,7 @@ resource "google_compute_backend_service" "default" {
 }
 
 resource "google_compute_health_check" "default" {
-  name               = "check-backend-${local.name_suffix}"
+  name               = "backend-${local.name_suffix}-check"
   check_interval_sec = 1
   timeout_sec        = 1
   http_health_check {
