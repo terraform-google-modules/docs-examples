@@ -1,5 +1,5 @@
 resource "google_vertex_ai_featurestore" "featurestore" {
-  name     = "terraform-${local.name_suffix}"
+  name     = "terraform_feature-${local.name_suffix}"
   labels = {
     foo = "bar"
   }
@@ -10,7 +10,7 @@ resource "google_vertex_ai_featurestore" "featurestore" {
 }
 
 resource "google_vertex_ai_featurestore_entitytype" "entity" {
-  name     = "terraform-${local.name_suffix}"
+  name     = "terraform_feature-${local.name_suffix}"
   labels = {
     foo = "bar"
   }
@@ -18,7 +18,7 @@ resource "google_vertex_ai_featurestore_entitytype" "entity" {
 }
 
 resource "google_vertex_ai_featurestore_entitytype_feature" "feature" {
-  name     = "terraform-${local.name_suffix}"
+  name     = "terraform_feature-${local.name_suffix}"
   labels = {
     foo = "bar"
   }
