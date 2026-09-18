@@ -1,6 +1,6 @@
 resource "google_dataproc_autoscaling_policy" "basic" {
   policy_id = "dataproc-policy-${local.name_suffix}"
-  location  = "us-central1"
+  location  = "us-east1"
 
   worker_config {
     max_instances = 3
