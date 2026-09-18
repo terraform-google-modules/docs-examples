@@ -1,5 +1,5 @@
 resource "google_compute_global_vm_extension_policy" "ops_agent_policy" {
-  name        = "global-ops-agent-vme-policy-%{random_suffix}"
+  name        = "global-ops-agent-policy-${local.name_suffix}"
   description = "A basic global VM extension policy"
   priority    = 20
 
