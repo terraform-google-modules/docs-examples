@@ -1,5 +1,5 @@
 resource "google_cloudbuild_trigger" "bbs-push-trigger" {
-  name        = "bbs-push-trigger"
+  name        = "bbs-push-trigger-${local.name_suffix}"
   location    = "us-central1"
 
   bitbucket_server_trigger_config {

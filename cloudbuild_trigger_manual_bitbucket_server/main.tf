@@ -1,5 +1,5 @@
 resource "google_cloudbuild_trigger" "manual-bitbucket-trigger" {
-  name        = "terraform-manual-bbs-trigger"
+  name        = "terraform-manual-bbs-trigger-${local.name_suffix}"
 
   source_to_build {
     uri       = "https://bbs.com/scm/stag/test-repo.git"
