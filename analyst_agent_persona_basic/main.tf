@@ -25,4 +25,10 @@ resource "google_agentic_applications_analyst_agent_persona" "example" {
     description = "Skill for finance analysis"
     content     = "# Finance Analysis\nAnalyze financial data."
   }
+
+  math_rendering_mode = "MATH_RENDERING_MODE_LATEX"
+
+  web_search_config {
+    excluded_domains = ["example.com"]
+  }
 }
