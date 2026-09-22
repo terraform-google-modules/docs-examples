@@ -1,6 +1,6 @@
 resource "google_workbench_instance" "instance" {
   name = "workbench-instance-${local.name_suffix}"
-  location = "us-central1-a"
+  location = "us-east1-b"
 
   gce_setup {
     machine_type = "n2d-standard-2" // cant be e2 because of accelerator
