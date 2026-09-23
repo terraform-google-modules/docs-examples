@@ -1,6 +1,6 @@
 resource "google_container_cluster" "primary" {
   name               = "autopilot-cluster-${local.name_suffix}"
-  location           = "us-central1"
+  location           = "us-east1"
   enable_autopilot = true
   ip_allocation_policy {   
   }
@@ -20,7 +20,7 @@ resource "google_container_cluster" "primary" {
 resource "google_gke_backup_backup_plan" "autopilot" {
   name = "autopilot-plan-${local.name_suffix}"
   cluster = google_container_cluster.primary.id
-  location = "us-central1"
+  location = "us-east1"
   backup_config {
     include_volume_data = true
     include_secrets = true
