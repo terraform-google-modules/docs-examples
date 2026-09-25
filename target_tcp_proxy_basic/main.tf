@@ -1,12 +1,14 @@
 resource "google_compute_target_tcp_proxy" "default" {
-  name            = "test-proxy-${local.name_suffix}"
-  backend_service = google_compute_backend_service.default.id
+  name                  = "test-proxy-${local.name_suffix}"
+  load_balancing_scheme = "EXTERNAL_MANAGED"
+  backend_service       = google_compute_backend_service.default.id
 }
 
 resource "google_compute_backend_service" "default" {
-  name        = "backend-service-${local.name_suffix}"
-  protocol    = "TCP"
-  timeout_sec = 10
+  name                  = "backend-service-${local.name_suffix}"
+  load_balancing_scheme = "EXTERNAL_MANAGED"
+  protocol              = "TCP"
+  timeout_sec           = 10
 
   health_checks = [google_compute_health_check.default.id]
 }
