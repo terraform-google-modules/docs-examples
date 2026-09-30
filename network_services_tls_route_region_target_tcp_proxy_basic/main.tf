@@ -1,0 +1,45 @@
+resource "google_compute_region_backend_service" "default" {
+  name        = "my-backend-service-${local.name_suffix}"
+  protocol    = "TCP"
+  timeout_sec = 10
+  region      = "europe-west4"
+
+  health_checks         = [google_compute_region_health_check.default.id]
+  load_balancing_scheme = "EXTERNAL_MANAGED"
+}
+
+resource "google_compute_region_health_check" "default" {
+  name               = "my-health-check-${local.name_suffix}"
+  region             = "europe-west4"
+  timeout_sec        = 1
+  check_interval_sec = 1
+  tcp_health_check {
+    port = "80"
+  }
+}
+
+resource "google_compute_region_target_tcp_proxy" "default" {
+  name                  = "my-target-tcp-proxy-${local.name_suffix}"
+  region                = "europe-west4"
+  load_balancing_scheme = "EXTERNAL_MANAGED"
+}
+
+resource "google_network_services_tls_route" "default" {
+  name     = "my-tls-route-${local.name_suffix}"
+  location = "europe-west4"
+
+  target_proxies = [
+    google_compute_region_target_tcp_proxy.default.self_link
+  ]
+
+  rules {
+    matches {
+      sni_host = ["example.com"]
+    }
+    action {
+      destinations {
+        service_name = google_compute_region_backend_service.default.self_link
+      }
+    }
+  }
+}
