@@ -8,7 +8,7 @@ resource "google_dialogflow_generator" "summarization_basic_generator" {
     top_p             = 0.95
   }
   summarization_context {
-    version = "4.0"
+    version = "6.0"
     output_language_code = "en"
   }
   trigger_event = "MANUAL_CALL"
