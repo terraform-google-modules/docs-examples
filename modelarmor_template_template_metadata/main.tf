@@ -1,5 +1,5 @@
 resource "google_model_armor_template" "template-template-metadata" {
-  location    = "us-central1-${local.name_suffix}"
+  location    = "us-${local.name_suffix}"
   template_id = "modelarmor3-${local.name_suffix}"
 
   filter_config {
@@ -22,6 +22,7 @@ resource "google_model_armor_template" "template-template-metadata" {
     custom_prompt_safety_error_message       = "This is a custom error message for prompt-${local.name_suffix}"
     custom_llm_response_safety_error_code    = 401-${local.name_suffix}
     enforcement_type                         = "INSPECT_ONLY-${local.name_suffix}"
+    modalities                               = ["MODALITY_TEXT", "MODALITY_IMAGE"]
     filter_version_selector {
       alias = "FILTER_VERSION_ALIAS_LATEST-${local.name_suffix}"
     }
