@@ -4,7 +4,7 @@ resource "google_compute_subnetwork" "subnetwork-with-internal-subnet-mode-pdp" 
   network          = google_compute_network.custom-test-network.id
   stack_type       = "IPV6_ONLY"
   ipv6_access_type = "INTERNAL"
-  ip_collection    = ""projects/tf-static-byoip/regions/us-central1/publicDelegatedPrefixes/internal-ipv6-subnet-mode-test-sub-pdp"-${local.name_suffix}"
+  ip_collection    = "projects/tf-static-byoip/regions/us-central1/publicDelegatedPrefixes/terraform-v6-internal-sub-pdp-${local.name_suffix}"
 }
 
 resource "google_compute_network" "custom-test-network" {
