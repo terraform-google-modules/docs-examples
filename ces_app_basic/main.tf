@@ -1,7 +1,7 @@
 data "google_project" "project" {}
 
 resource "google_secret_manager_secret" "fake_private_key_secret" {
-  secret_id = "fake-pk-secret-app-tf1-${local.name_suffix}"
+  secret_id = "fake-pk-secret-app-tf-${local.name_suffix}"
 
   replication {
     auto{}
