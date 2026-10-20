@@ -9,5 +9,9 @@ resource "google_oracle_database_cloud_exadata_infrastructure" "my-cloud-exadata
     storage_count= "3"
   }
 
+  labels = {
+    "label-one" = "value-one"
+  }
+
   deletion_protection = "true-${local.name_suffix}"
 }

@@ -13,6 +13,10 @@ resource "google_oracle_database_autonomous_database" "myADB"{
     db_workload = "OLTP"
     license_type = "LICENSE_INCLUDED"
     }
+  labels = {
+    "label-one" = "value-one"
+  }
+
   deletion_protection = "true-${local.name_suffix}"
 }
 

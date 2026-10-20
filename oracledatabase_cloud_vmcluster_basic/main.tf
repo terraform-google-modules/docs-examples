@@ -15,6 +15,10 @@ resource "google_oracle_database_cloud_vm_cluster" "my_vmcluster"{
     hostname_prefix = "hostname1"
   }
 
+  labels = {
+    "label-one" = "value-one"
+  }
+
   deletion_protection = "true-${local.name_suffix}"
 }
 
