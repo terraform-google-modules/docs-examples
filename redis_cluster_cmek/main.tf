@@ -1,11 +1,12 @@
 resource "google_redis_cluster" "cluster-cmek" {
   name           = "cmek-cluster-${local.name_suffix}"
-  shard_count    = 3
+  shard_count    = 1
   psc_configs {
     network = google_compute_network.consumer_net.id
   }
   kms_key = "my-key-${local.name_suffix}"
   region = "us-east1"
+  node_type = "REDIS_SHARED_CORE_NANO"
   deletion_protection_enabled = false
   depends_on = [
     google_network_connectivity_service_connection_policy.default

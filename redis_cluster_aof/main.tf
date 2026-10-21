@@ -1,6 +1,6 @@
 resource "google_redis_cluster" "cluster-aof" {
   name           = "aof-cluster-${local.name_suffix}"
-  shard_count    = 3
+  shard_count    = 1
   psc_configs {
     network = google_compute_network.consumer_net.id
   }

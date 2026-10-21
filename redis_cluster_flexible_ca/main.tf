@@ -1,7 +1,8 @@
 resource "google_redis_cluster" "test-cluster" {
   name           = "ca-cluster-${local.name_suffix}"
-  shard_count    = 3
+  shard_count    = 1
   region         = "us-east1"
+  node_type      = "REDIS_SHARED_CORE_NANO"
   
   psc_configs {
     network = google_compute_network.consumer_net.id

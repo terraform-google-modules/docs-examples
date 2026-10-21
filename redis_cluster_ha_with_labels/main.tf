@@ -1,6 +1,6 @@
 resource "google_redis_cluster" "cluster-ha-with-labels" {
   name           = "ha-cluster-${local.name_suffix}"
-  shard_count    = 3
+  shard_count    = 1
   labels = {
     my_key = "my_val"
     other_key = "other_val" 
