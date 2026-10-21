@@ -5,7 +5,7 @@ resource "google_memorystore_instance" "instance-full" {
     network                    = google_compute_network.producer_net.id
     project_id                 = data.google_project.project.project_id
   }     
-  location                     = "us-west1"
+  location                     = "us-east4"
   replica_count                = 1
   node_type                    = "SHARED_CORE_NANO"
   transit_encryption_mode      = "TRANSIT_ENCRYPTION_DISABLED"
@@ -16,7 +16,7 @@ resource "google_memorystore_instance" "instance-full" {
   }
   zone_distribution_config {
     mode                       = "SINGLE_ZONE"
-    zone                       = "us-west1-b"
+    zone                       = "us-east4-a"
   }
   maintenance_policy {
     weekly_maintenance_window {
@@ -53,7 +53,7 @@ resource "google_memorystore_instance" "instance-full" {
 
 resource "google_network_connectivity_service_connection_policy" "default" {
   name          = "my-policy-${local.name_suffix}"
-  location      = "us-west1"
+  location      = "us-east4"
   service_class = "gcp-memorystore"
   description   = "my basic service connection policy"
   network       = google_compute_network.producer_net.id
@@ -65,7 +65,7 @@ resource "google_network_connectivity_service_connection_policy" "default" {
 resource "google_compute_subnetwork" "producer_subnet" {
   name          = "my-subnet-${local.name_suffix}"
   ip_cidr_range = "10.0.0.248/29"
-  region        = "us-west1"
+  region        = "us-east4"
   network       = google_compute_network.producer_net.id
 }
 
