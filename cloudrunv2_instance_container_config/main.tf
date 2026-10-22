@@ -1,6 +1,6 @@
 resource "google_cloud_run_v2_instance" "default" {
   name                 = "cloudrun-instance-${local.name_suffix}"
-  location             = "us-east4"
+  location             = "us-west4"
   client               = "terraform"
   client_version       = "1.0.0"
 

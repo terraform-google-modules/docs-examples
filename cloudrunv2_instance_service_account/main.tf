@@ -1,6 +1,6 @@
 resource "google_cloud_run_v2_instance" "default" {
   name                = "cloudrun-instance-${local.name_suffix}"
-  location            = "us-east4"
+  location            = "us-west4"
   service_account     = google_service_account.service_account.email
 
   containers {
