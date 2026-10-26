@@ -31,6 +31,7 @@ resource "google_network_services_http_route" "default" {
           service_name = "new"
           weight = 1
         }
+        mirror_percent = 50
       }
       cors_policy {
         allow_origins = ["example"]
@@ -51,6 +52,7 @@ resource "google_network_services_http_route" "default" {
         add = { "minor-version": "1"}
         remove = ["removearg"]
       }
+      idle_timeout = "1s"
     }
   }
 }
