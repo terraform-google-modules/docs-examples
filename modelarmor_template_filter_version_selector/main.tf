@@ -12,7 +12,7 @@ resource "google_model_armor_template" "template-filter-version-selector" {
   }
   template_metadata {
     filter_version_selector {
-      version = "v1-${local.name_suffix}"
+      version = "v3-${local.name_suffix}"
     }
   }
 }

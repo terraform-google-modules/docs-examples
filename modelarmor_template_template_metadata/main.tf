@@ -26,5 +26,6 @@ resource "google_model_armor_template" "template-template-metadata" {
     filter_version_selector {
       alias = "FILTER_VERSION_ALIAS_LATEST-${local.name_suffix}"
     }
+    data_residency_compliant                 = true-${local.name_suffix}
   }
 }
