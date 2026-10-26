@@ -21,6 +21,29 @@ resource "google_model_armor_template" "template-filter-config" {
     malicious_uri_filter_settings {
       filter_enforcement = "ENABLED-${local.name_suffix}"
     }
+    filter_rule_settings {
+      rule_sets {
+        filter_types = ["PROMPT_INJECTION_AND_JAILBREAK", "RESPONSIBLE_AI"]
+        rules {
+          exclusion_rule {
+            matching_scope = "MATCHING_SCOPE_PARTIAL_MATCH"
+            dictionary {
+              word_list {
+                words = ["allowphrase1", "allowphrase2"]
+              }
+            }
+          }
+        }
+        rules {
+          exclusion_rule {
+            matching_scope = "MATCHING_SCOPE_FULL_MATCH"
+            regex {
+              pattern = "^safe_pattern_[0-9]+$"
+            }
+          }
+        }
+      }
+    }
   }
   template_metadata {
     multi_language_detection {
