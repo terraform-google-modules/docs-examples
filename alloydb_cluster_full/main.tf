@@ -1,6 +1,6 @@
 resource "google_alloydb_cluster" "full" {
   cluster_id = "alloydb-cluster-full-${local.name_suffix}"
-  location   = "us-central1"
+  location   = "us-east1"
   network_config {
     network = google_compute_network.default.id
   }
@@ -17,7 +17,7 @@ resource "google_alloydb_cluster" "full" {
   }
 
   automated_backup_policy {
-    location      = "us-central1"
+    location      = "us-east1"
     backup_window = "1800s"
     enabled       = true
 
