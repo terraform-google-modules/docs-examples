@@ -1,7 +1,7 @@
 resource "google_redis_cluster" "test-cluster" {
   name           = "ca-cluster-${local.name_suffix}"
   shard_count    = 1
-  region         = "us-east1"
+  region         = "northamerica-south1"
   node_type      = "REDIS_SHARED_CORE_NANO"
   
   psc_configs {
@@ -23,14 +23,14 @@ resource "google_redis_cluster" "test-cluster" {
 
 resource "google_privateca_ca_pool" "default" {
   name     = "ca-pool-${local.name_suffix}"
-  location = "us-east1"
+  location = "northamerica-south1"
   tier     = "ENTERPRISE"
 }
 
 resource "google_privateca_certificate_authority" "default" {
   pool                     = google_privateca_ca_pool.default.name
   certificate_authority_id = "ca-auth-${local.name_suffix}"
-  location                 = "us-east1"
+  location                 = "northamerica-south1"
   config {
     subject_config {
       subject {
@@ -65,7 +65,7 @@ resource "google_privateca_certificate_authority" "default" {
 
 resource "google_network_connectivity_service_connection_policy" "default" {
   name           = "ca-policy-${local.name_suffix}"
-  location       = "us-east1"
+  location       = "northamerica-south1"
   service_class  = "gcp-memorystore-redis"
   network        = google_compute_network.consumer_net.id
   psc_config {
@@ -76,7 +76,7 @@ resource "google_network_connectivity_service_connection_policy" "default" {
 resource "google_compute_subnetwork" "consumer_subnet" {
   name          = "ca-subnet-${local.name_suffix}"
   ip_cidr_range = "10.0.0.248/29"
-  region        = "us-east1"
+  region        = "northamerica-south1"
   network       = google_compute_network.consumer_net.id
 }
 
