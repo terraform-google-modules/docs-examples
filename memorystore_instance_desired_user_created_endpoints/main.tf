@@ -1,6 +1,6 @@
 resource "google_memorystore_instance_desired_user_created_endpoints" "instance-user-conn" {
   name                        = "instance-user-conn-${local.name_suffix}"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   desired_user_created_endpoints {
     connections {
       psc_connection {
@@ -45,7 +45,7 @@ resource "google_memorystore_instance_desired_user_created_endpoints" "instance-
 
 resource "google_compute_forwarding_rule" "forwarding_rule1_network1" {
   name                        = "fwd1-net1-${local.name_suffix}"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   ip_address                  = google_compute_address.ip1_network1.id
   load_balancing_scheme       = ""
   network                     = google_compute_network.network1.id
@@ -54,7 +54,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule1_network1" {
 
 resource "google_compute_forwarding_rule" "forwarding_rule2_network1" {
   name                        = "fwd2-net1-${local.name_suffix}"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   ip_address                  = google_compute_address.ip2_network1.id
   load_balancing_scheme       = ""
   network                     = google_compute_network.network1.id
@@ -63,7 +63,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule2_network1" {
 
 resource "google_compute_address" "ip1_network1" {
   name                        = "ip1-net1-${local.name_suffix}"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   subnetwork                  = google_compute_subnetwork.subnet_network1.id
   address_type                = "INTERNAL"
   purpose                     = "GCE_ENDPOINT"
@@ -71,7 +71,7 @@ resource "google_compute_address" "ip1_network1" {
 
 resource "google_compute_address" "ip2_network1" {
   name                        = "ip2-net1-${local.name_suffix}"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   subnetwork                  = google_compute_subnetwork.subnet_network1.id
   address_type                = "INTERNAL"
   purpose                     = "GCE_ENDPOINT"
@@ -80,7 +80,7 @@ resource "google_compute_address" "ip2_network1" {
 resource "google_compute_subnetwork" "subnet_network1" {
   name                        = "subnet-net1-${local.name_suffix}"
   ip_cidr_range               = "10.0.0.248/29"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   network                     = google_compute_network.network1.id
 }
 
@@ -91,7 +91,7 @@ resource "google_compute_network" "network1" {
 
 resource "google_compute_forwarding_rule" "forwarding_rule1_network2" {
   name                        = "fwd1-net2-${local.name_suffix}"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   ip_address                  = google_compute_address.ip1_network2.id
   load_balancing_scheme       = ""
   network                     = google_compute_network.network2.id
@@ -100,7 +100,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule1_network2" {
 
 resource "google_compute_forwarding_rule" "forwarding_rule2_network2" {
   name                        = "fwd2-net2-${local.name_suffix}"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   ip_address                  = google_compute_address.ip2_network2.id
   load_balancing_scheme       = ""
   network                     = google_compute_network.network2.id
@@ -109,7 +109,7 @@ resource "google_compute_forwarding_rule" "forwarding_rule2_network2" {
 
 resource "google_compute_address" "ip1_network2" {
   name                        = "ip1-net2-${local.name_suffix}"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   subnetwork                  = google_compute_subnetwork.subnet_network2.id
   address_type                = "INTERNAL"
   purpose                     = "GCE_ENDPOINT"
@@ -117,7 +117,7 @@ resource "google_compute_address" "ip1_network2" {
 
 resource "google_compute_address" "ip2_network2" {
   name                        = "ip2-net2-${local.name_suffix}"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   subnetwork                  = google_compute_subnetwork.subnet_network2.id
   address_type                = "INTERNAL"
   purpose                     = "GCE_ENDPOINT"
@@ -127,7 +127,7 @@ resource "google_compute_address" "ip2_network2" {
 resource "google_memorystore_instance" "instance-user-conn" {
   instance_id                 =  "instance-user-conn-${local.name_suffix}"
   shard_count                 = 1
-  location                    = "us-east4"
+  location                    = "northamerica-south1"
   node_type                   = "SHARED_CORE_NANO"
   deletion_protection_enabled = false
 }
@@ -135,7 +135,7 @@ resource "google_memorystore_instance" "instance-user-conn" {
 resource "google_compute_subnetwork" "subnet_network2" {
   name                        = "subnet-net2-${local.name_suffix}"
   ip_cidr_range               = "10.0.0.248/29"
-  region                      = "us-east4"
+  region                      = "northamerica-south1"
   network                     = google_compute_network.network2.id
 }
 
