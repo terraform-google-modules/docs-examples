@@ -11,6 +11,6 @@ resource "google_dataproc_metastore_service" "dpms2" {
   }
 
   scaling_config {
-    instance_size = "EXTRA_SMALL"
+    instance_size  = "EXTRA_SMALL"
   }
 }

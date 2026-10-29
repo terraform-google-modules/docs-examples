@@ -10,3 +10,5 @@ resource "google_vertex_ai_index_endpoint" "index_endpoint" {
     enable_private_service_connect = false
   }
 }
+
+data "google_project" "project" {}

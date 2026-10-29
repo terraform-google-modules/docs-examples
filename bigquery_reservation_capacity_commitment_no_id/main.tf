@@ -1,4 +1,5 @@
 resource "google_bigquery_capacity_commitment" "commitment" {
+
   location   = "us-west2"
   slot_count = 100
   plan       = "FLEX_FLAT_RATE"
@@ -6,8 +7,8 @@ resource "google_bigquery_capacity_commitment" "commitment" {
 }
 
 resource "time_sleep" "wait_61_seconds" {
-  depends_on = [google_bigquery_capacity_commitment.commitment]
+	depends_on = [google_bigquery_capacity_commitment.commitment]
 
-  # Only needed for CI tests to be able to tear down the commitment once it's expired
+	# Only needed for CI tests to be able to tear down the commitment once it's expired
   create_duration = "61s"
 }
