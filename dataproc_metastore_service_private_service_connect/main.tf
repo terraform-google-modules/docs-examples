@@ -12,9 +12,10 @@ resource "google_compute_subnetwork" "subnet" {
 }
 
 resource "google_dataproc_metastore_service" "default" {
-  service_id = "metastore-srv-${local.name_suffix}"
-  location   = "us-central1"
-  tier       = "DEVELOPER"
+  service_id      = "metastore-srv-${local.name_suffix}"
+  location        = "us-central1"
+  tier            = "DEVELOPER"
+  deletion_policy = "FORCE"
 
   hive_metastore_config {
     version = "3.1.2"
