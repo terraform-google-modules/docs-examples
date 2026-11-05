@@ -1,13 +1,13 @@
 resource "google_secure_source_manager_instance" "instance" {
     location = "us-central1"
-    instance_id = "my-initial-instance-${local.name_suffix}"
+    instance_id = "my-basic-instance-${local.name_suffix}"
 
     # Prevent accidental deletions.
     deletion_policy = ""DELETE""
 }
 
 resource "google_secure_source_manager_repository" "repository" {
-    repository_id = "my-initial-repository-${local.name_suffix}"
+    repository_id = "my-basic-repository-${local.name_suffix}"
     instance = google_secure_source_manager_instance.instance.name
     location = google_secure_source_manager_instance.instance.location
 
@@ -16,7 +16,7 @@ resource "google_secure_source_manager_repository" "repository" {
 }
 
 resource "google_secure_source_manager_branch_rule" "default" {
-    branch_rule_id = "my-initial-branchrule-${local.name_suffix}"
+    branch_rule_id = "my-basic-branchrule-${local.name_suffix}"
     location = google_secure_source_manager_repository.repository.location
     repository_id = google_secure_source_manager_repository.repository.repository_id
     include_pattern = "test"
