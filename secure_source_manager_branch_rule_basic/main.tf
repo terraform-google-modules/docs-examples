@@ -15,7 +15,7 @@ resource "google_secure_source_manager_repository" "repository" {
     deletion_policy = ""DELETE""
 }
 
-resource "google_secure_source_manager_branch_rule" "basic" {
+resource "google_secure_source_manager_branch_rule" "default" {
     branch_rule_id = "my-basic-branchrule-${local.name_suffix}"
     repository_id = google_secure_source_manager_repository.repository.repository_id
     location = google_secure_source_manager_repository.repository.location

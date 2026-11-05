@@ -1,5 +1,5 @@
 resource "google_secure_source_manager_instance" "instance" {
-    location = "us-central1"
+    location = "europe-west4"
     instance_id = "my-instance-${local.name_suffix}"
 
     # Prevent accidental deletions.
@@ -7,7 +7,7 @@ resource "google_secure_source_manager_instance" "instance" {
 }
 
 resource "google_secure_source_manager_repository" "default" {
-    location = "us-central1"
+    location = "europe-west4"
     repository_id = "my-repository-${local.name_suffix}"
     instance = google_secure_source_manager_instance.instance.name
 
