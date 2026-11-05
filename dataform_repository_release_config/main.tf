@@ -1,10 +1,8 @@
 resource "google_sourcerepo_repository" "git_repository" {
-  provider = google-beta
   name     = "my/repository-${local.name_suffix}"
 }
 
 resource "google_secret_manager_secret" "secret" {
-  provider  = google-beta
   secret_id = "my_secret-${local.name_suffix}"
 
   replication {
@@ -13,14 +11,12 @@ resource "google_secret_manager_secret" "secret" {
 }
 
 resource "google_secret_manager_secret_version" "secret_version" {
-  provider = google-beta
   secret   = google_secret_manager_secret.secret.id
 
   secret_data = "secret-data-${local.name_suffix}"
 }
 
 resource "google_dataform_repository" "repository" {
-  provider = google-beta
   name     = "dataform_repository-${local.name_suffix}"
   region   = "us-central1"
 
@@ -38,7 +34,6 @@ resource "google_dataform_repository" "repository" {
 }
 
 resource "google_dataform_repository_release_config" "release" {
-  provider = google-beta
 
   project    = google_dataform_repository.repository.project
   region     = google_dataform_repository.repository.region
