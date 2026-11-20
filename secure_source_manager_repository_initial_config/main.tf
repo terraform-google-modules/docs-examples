@@ -3,7 +3,7 @@ resource "google_secure_source_manager_instance" "instance" {
     instance_id = "my-instance-${local.name_suffix}"
 
     # Prevent accidental deletions.
-    deletion_policy = ""DELETE""
+    deletion_policy = "DELETE"
 }
 
 resource "google_service_account" "sa" {
@@ -26,5 +26,5 @@ resource "google_secure_source_manager_repository" "default" {
     }
 
     # Prevent accidental deletions.
-    deletion_policy = ""DELETE""
+    deletion_policy = "DELETE"
 }

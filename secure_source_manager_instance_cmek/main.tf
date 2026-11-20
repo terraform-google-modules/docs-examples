@@ -15,7 +15,7 @@ resource "google_secure_source_manager_instance" "default" {
     ]
 
     # Prevent accidental deletions.
-    deletion_policy = ""DELETE""
+    deletion_policy = "DELETE"
 }
 
 data "google_project" "project" {}
