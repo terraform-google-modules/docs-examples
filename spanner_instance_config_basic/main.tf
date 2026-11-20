@@ -1,5 +1,5 @@
 resource "google_spanner_instance_config" "example" {
-  name          = ""custom-nam11-config"-${local.name_suffix}"
+  name          = "custom-nam11-config-${local.name_suffix}"
   display_name  = "Test Spanner Instance Config"
   base_config    = "nam11"
   replicas     {
