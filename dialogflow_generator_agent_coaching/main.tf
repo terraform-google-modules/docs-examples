@@ -15,4 +15,8 @@ resource "google_dialogflow_generator" "agent_coaching_generator" {
     }
   }
   trigger_event = "END_OF_UTTERANCE"
+  suggestion_deduping_config {
+    enable_deduping      = true
+    similarity_threshold = 0.75
+  }
 }
